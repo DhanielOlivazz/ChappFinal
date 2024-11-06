@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ChappFinal.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ChappFinal.Vistas"
+    xmlns:menu="clr-namespace:ChappFinal.Menus"
+    Shell.FlyoutBehavior="Disabled"
+    Title="ChappFinal">
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:Registro}" Route="MainPage" />
+    <ShellContent Route="registro" ContentTemplate="{DataTemplate local:Registro}" />
+    <ShellContent Route="login" ContentTemplate="{DataTemplate local:LogIn}" />
+    <ShellContent Route="Menu" ContentTemplate="{DataTemplate menu:MainMenu}" />
+    <ShellContent Route="Proyecto" ContentTemplate="{DataTemplate local:Proyectos}"/>
+    <ShellContent Route="DetalleProyecto" ContentTemplate="{DataTemplate local:DetalleProyecto}"/>
+
+</Shell>

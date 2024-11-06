@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChappFinal.Vistas.Inicio"
+             xmlns:local="clr-namespace:ChappFinal.Vistas"
+             Title="Inicio">
+    <Grid>
+        <ScrollView>
+            <VerticalStackLayout>
+                <Grid Padding="0,5,0,5" BackgroundColor="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame Grid.Column="0"
+                        Padding="0"
+                        BackgroundColor="White"
+                        CornerRadius="15"
+                        HasShadow="True"
+                        VerticalOptions="Center">
+                        <SearchBar Placeholder="Buscar..."
+                                PlaceholderColor="Grey"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="Transparent" />
+                    </Frame>
+
+                    <ImageButton Grid.Column="1"
+                              Source="notificacion2.png"
+                              WidthRequest="40"
+                              HeightRequest="40"
+                              VerticalOptions="Center"
+                              HorizontalOptions="End"
+                              BackgroundColor="Transparent"
+                              Clicked="OnNotificacionesClicked" />
+                </Grid>
+
+                <BoxView HeightRequest="1"
+                       BackgroundColor="#093A4F"          
+                       HorizontalOptions="FillAndExpand"/>
+
+                <CollectionView x:Name="PublicacionesCollectionView" 
+                             ItemsSource="{Binding Publicaciones}"
+                             Margin="5,0,5,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame BorderColor="DarkGray" 
+                                       BackgroundColor="White" 
+                                       CornerRadius="10" 
+                                       Padding="10" 
+                                       Margin="0,10,0,10" 
+                                       HorizontalOptions="FillAndExpand" 
+                                       VerticalOptions="FillAndExpand" 
+                                       HeightRequest="500"
+                                       HasShadow="True">
+                                    <Grid Padding="10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Label Grid.Row="0"
+                                               Margin="0,0,0,5"
+                                               Text="{Binding Titulo}"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="#2C3E50"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Start"/>
+
+                                        <Label x:Name="DescripcionLabel"
+                                               Margin="0,0,0,5"
+                                               Grid.Row="1"
+                                               MaxLines="3" 
+                                               Text="{Binding Descripcion}"
+                                               FontSize="14"
+                                               TextColor="#34495E"
+                                               VerticalOptions="Start"
+                                               HorizontalOptions="Start"/>
+
+                                        <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5">
+                                            <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
+                                                <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="{Binding Ubicacion}" 
+                                                       VerticalOptions="Center" 
+                                                       TextColor="#34495E" 
+                                                       FontSize="15"/>
+                                            </HorizontalStackLayout>
+                                            <Label Text="20/50"
+                                                   Grid.Column="1"
+                                                   x:Name="counter"
+                                                   TextColor="#34495E"
+                                                   FontSize="15"
+                                                   HorizontalOptions="End"
+                                                   VerticalOptions="Center"/>
+                                        </Grid>
+
+                                        <!-- Sección de Categorías o Tags -->
+                                        <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="0,5">
+                                            <Label Text="Categorías: " 
+                                                   FontAttributes="Bold" 
+                                                   FontSize="14" 
+                                                   TextColor="#34495E"/>
+                                            <Label Text="Electricismo, Manposteria" 
+                                                   TextColor="#2980B9" 
+                                                   FontSize="14"/>
+                                        </StackLayout>
+
+                                        <!-- Imagen con tamaño predefinido -->
+                                        <Image Grid.Row="4"
+                                               Source="{Binding Imagen}"
+                                               Aspect="AspectFill"
+                                               WidthRequest="300"  
+                                               HeightRequest="200"
+                                               Margin="0,5"/>
+
+                                        <Grid Padding="0" Grid.Row="5" RowDefinitions="auto,auto">
+                                            <BoxView HeightRequest="1" 
+                                                     Grid.Row="0"
+                                                     BackgroundColor="#BDC3C7" 
+                                                     HorizontalOptions="FillAndExpand"/>
+
+                                            <Button Grid.Row="1" 
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Margin="0,20,0,0"
+                                                    VerticalOptions="Center"
+                                                    Text="Aplicar"
+                                                    BackgroundColor="#093A4F"
+                                                    TextColor="White"
+                                                    CornerRadius="5"/>
+                                        </Grid>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Frame para las notificaciones emergentes -->
+
+        <Frame x:Name="NotificacionesFrame"
+            BackgroundColor="White"
+            Padding="20"
+            CornerRadius="10"
+            HasShadow="True"
+            IsVisible="False"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="20">
+            <ScrollView>
+                <StackLayout>
+                    <Label Text="Notificaciones"
+                         FontSize="Title"
+                         FontAttributes="Bold"
+                         TextColor="Black"
+                         HorizontalOptions="Center" />
+                    <local:Notificaciones/>
+                    <Button BackgroundColor="DarkRed" TextColor="White" Text="Cerrar" Clicked="OnCerrarNotificacionesClicked" />
+                </StackLayout>
+            </ScrollView>
+
+        </Frame>
+    </Grid>
+</ContentPage>

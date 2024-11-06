@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChappFinal.Vistas.LogIn"
+             Shell.NavBarIsVisible="False"
+             Title="LogIn">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    <ScrollView>
+        <!-- StackLayout que cubre toda la pantalla y tiene un color de fondo -->
+        <StackLayout Padding="30"
+                     Spacing="20"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#f0f0f5">
+            <!-- Color de fondo del StackLayout -->
+
+            <!-- Recuadro del formulario de login -->
+            <Frame Padding="20"
+                   CornerRadius="10"
+                   BorderColor="LightGray"
+                   HasShadow="True"
+                   BackgroundColor="White"
+                   VerticalOptions="CenterAndExpand">
+
+                <!-- Color de fondo del Frame -->
+
+                <StackLayout Spacing="15">
+                    <!-- Imagen del logo -->
+                    <Image Source="chapp2.png"
+                           WidthRequest="200"
+                           HeightRequest="75"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Usuario -->
+                    <Entry x:Name="EmailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"/>
+
+                    <!-- Contraseña -->
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Contraseña"
+                           IsPassword="True"/>
+                    <!-- Guardar usuario -->
+                    <Grid ColumnDefinitions="Auto, Auto">
+                        <CheckBox x:Name="SaveUserCheckBox" 
+                                  IsChecked="false"
+                                  Color="#093A4F"
+                                  VerticalOptions="Center"
+                                  Grid.Column="0"/>
+
+                        <Label Text="Guardar Usuario"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start" 
+                               Grid.Column="1"/>
+                    </Grid>
+
+                    <!-- Botón de Login -->
+                    <Button Text="Iniciar sesión"
+                            BackgroundColor="#093A4F"
+                            TextColor="White"
+                            Clicked="OnLogInClicked"/>
+
+                    <!-- Mensaje de error -->
+                    <Label x:Name="ErrorLabel"
+                           TextColor="Red"
+                           IsVisible="False"/>
+
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                        <Label Text="¿No tienes una cuenta?" HorizontalOptions="Center"/>
+
+                        <Label Text="Registrarse"
+                               TextColor="Blue"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRegisterTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

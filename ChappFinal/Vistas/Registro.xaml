@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChappFinal.Vistas.Registro"
+             Shell.NavBarIsVisible="False"
+             Title="Registro">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsEnabled="False" />
+    </Shell.BackButtonBehavior>
+    <ScrollView>
+        <StackLayout Padding="30"
+                     Spacing="20"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand"
+                     BackgroundColor="#f0f0f5">
+
+            <!-- Recuadro del formulario de login -->
+            <Frame Padding="20"
+                   CornerRadius="10"
+                   BorderColor="LightGray"
+                   HasShadow="True"
+                   BackgroundColor="White"
+                   VerticalOptions="CenterAndExpand">
+
+                <!-- Color de fondo del Frame -->
+
+                <StackLayout Spacing="15">
+                    <!-- Imagen del logo -->
+                    <Image Source="chapp2.png"
+                           WidthRequest="200"
+                           HeightRequest="75"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Usuario -->
+                    <Entry x:Name="UsernameEntry"
+                           Placeholder="Usuario"
+                           Keyboard="Text"/>
+
+                    <!-- Email -->
+                    <Entry x:Name="emailEntry"
+                           Placeholder="Email"
+                           Keyboard="Email"/>
+
+                    <!-- Contraseña -->
+                    <Entry x:Name="PasswordEntry"
+                           Placeholder="Contraseña"
+                           IsPassword="True"/>
+
+                    <!-- Botón de Registro -->
+                    <Button Text="Registrar"
+                            BackgroundColor="#093A4F"
+                            TextColor="White"
+                            Clicked="OnRegisterClicked"/>
+
+                    <!-- Mensaje de error -->
+                    <Label x:Name="ErrorLabel"
+                           TextColor="Red"
+                           IsVisible="False"/>
+
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                        <Label Text="¿Ya tienes cuenta?"
+                               HorizontalOptions="Center"/>
+
+                        <Label Text="Iniciar Sesion"
+                               TextColor="Blue"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLogInTapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
