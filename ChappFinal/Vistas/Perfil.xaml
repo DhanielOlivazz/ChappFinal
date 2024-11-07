@@ -297,7 +297,7 @@
                                 HorizontalOptions="Center" />
 
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
-                    <Image Source="user_icon.png" 
+                    <Image Source="user_icon.ng" 
                                WidthRequest="200"
                                HeightRequest="150"
                                Aspect="AspectFit"
@@ -326,16 +326,16 @@
                                Margin="5"/>
 
                     <Entry Placeholder="Descripción"
-                                Text="{Binding NuevaPublicacion.Descripcion}"
-                                Margin="0,5,0,0" />
+                           Text="{Binding NuevaPublicacion.Descripcion}"
+                           Margin="0,5,0,0" />
 
                     <Label Text="Ubicacion"
-                               FontSize="Subtitle"
-                               Margin="5"/>
+                           FontSize="Subtitle"
+                           Margin="5"/>
 
                     <Entry Placeholder="Ubicación"
-                                Text="{Binding NuevaPublicacion.Ubicacion}"
-                                Margin="0,5,0,0" />
+                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                           Margin="0,5,0,0" />
 
                     <Label Text="Categoría"
                                  FontSize="Subtitle"
@@ -348,6 +348,20 @@
                             <x:String>Fontaneria</x:String>
                         </Picker.Items>
                     </Picker>
+                    <Label Text="Presupuesto minimo"
+                           FontSize="Subtitle"
+                           Margin="5"/>
+                    <Entry Placeholder="Min"
+                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                           Keyboard="Numeric"
+                           Margin="0,5,0,0" />
+                    <Label Text="Presupuesto maximo"
+                           FontSize="Subtitle"
+                           Margin="5"/>
+                    <Entry Placeholder="Max"
+                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                           Keyboard="Numeric"
+                           Margin="0,0,10,0" />
 
                     <Grid ColumnDefinitions="*,*">
                         <Button Text="Guardar"
@@ -418,6 +432,7 @@
                                 FontSize="Subtitle"
                                 Margin="5"/>
                         <Entry Placeholder="Email..."
+                               Keyboard="Email"
                                 Text="{Binding}"
                                 Margin="0,5,0,0" />
 
