@@ -63,6 +63,8 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <!-- Nueva fila para presupuesto -->
                                         </Grid.RowDefinitions>
 
                                         <Label Grid.Row="0"
@@ -101,8 +103,36 @@
                                                    VerticalOptions="Center"/>
                                         </Grid>
 
+                                        <!-- Presupuesto máximo y mínimo -->
+                                        <Grid Grid.Row="3" ColumnDefinitions="*,*" Margin="0,5">
+                                            <Label Text="Presupuesto Mínimo: " 
+                                                   FontAttributes="Bold" 
+                                                   FontSize="14" 
+                                                   TextColor="#34495E" 
+                                                   VerticalOptions="Center"/>
+                                            <Label Text="{Binding PresupuestoMinimo}" 
+                                                   FontSize="14" 
+                                                   TextColor="#2980B9" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"/>
+
+                                            <Label Text="Presupuesto Máximo: " 
+                                                   Grid.Column="1"
+                                                   FontAttributes="Bold" 
+                                                   FontSize="14" 
+                                                   TextColor="#34495E" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"/>
+                                            <Label Text="{Binding PresupuestoMaximo}" 
+                                                   Grid.Column="1"
+                                                   FontSize="14" 
+                                                   TextColor="#2980B9" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"/>
+                                        </Grid>
+
                                         <!-- Sección de Categorías o Tags -->
-                                        <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="0,5">
+                                        <StackLayout Grid.Row="4" Orientation="Horizontal" Margin="0,5">
                                             <Label Text="Categorías: " 
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
@@ -113,14 +143,14 @@
                                         </StackLayout>
 
                                         <!-- Imagen con tamaño predefinido -->
-                                        <Image Grid.Row="4"
+                                        <Image Grid.Row="5"
                                                Source="{Binding Imagen}"
                                                Aspect="AspectFill"
                                                WidthRequest="300"  
                                                HeightRequest="200"
                                                Margin="0,5"/>
 
-                                        <Grid Padding="0" Grid.Row="5" RowDefinitions="auto,auto">
+                                        <Grid Padding="0" Grid.Row="6" RowDefinitions="auto,auto">
                                             <BoxView HeightRequest="1" 
                                                      Grid.Row="0"
                                                      BackgroundColor="#BDC3C7" 

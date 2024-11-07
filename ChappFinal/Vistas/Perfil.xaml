@@ -226,9 +226,35 @@
                                                    HorizontalOptions="End"
                                                    VerticalOptions="Center"/>
                                         </Grid>
+                                        <Grid Grid.Row="3" ColumnDefinitions="*,*" Margin="0,5">
+                                            <Label Text="Presupuesto Mínimo: " 
+                                                   FontAttributes="Bold" 
+                                                   FontSize="14" 
+                                                   TextColor="#34495E" 
+                                                   VerticalOptions="Center"/>
+                                            <Label Text="{Binding PresupuestoMinimo}" 
+                                                   FontSize="14" 
+                                                   TextColor="#2980B9" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"/>
+
+                                            <Label Text="Presupuesto Máximo: " 
+                                                   Grid.Column="1"
+                                                   FontAttributes="Bold" 
+                                                   FontSize="14" 
+                                                   TextColor="#34495E" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"/>
+                                            <Label Text="{Binding PresupuestoMaximo}" 
+                                                   Grid.Column="1"
+                                                   FontSize="14" 
+                                                   TextColor="#2980B9" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"/>
+                                        </Grid>
 
                                         <!-- Sección de Categorías o Tags -->
-                                        <StackLayout Grid.Row="3" Orientation="Horizontal" Margin="0,5">
+                                        <StackLayout Grid.Row="4" Orientation="Horizontal" Margin="0,5">
                                             <Label Text="Categorías: " 
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
@@ -239,7 +265,7 @@
                                         </StackLayout>
 
                                         <!-- Imagen con tamaño predefinido -->
-                                        <Image Grid.Row="4"
+                                        <Image Grid.Row="5"
                                                Source="{Binding Imagen}"
                                                Aspect="AspectFill"
                                                WidthRequest="300"  
