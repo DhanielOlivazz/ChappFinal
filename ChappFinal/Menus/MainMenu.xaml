@@ -3,6 +3,11 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:ChappFinal.Vistas"
        x:Class="ChappFinal.Menus.MainMenu">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="TabBarSelectedItemColor">#FFFFFF</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
     <TabBar>
         <!-- Segunda pestaña -->
         <Tab Title="Perfil" Icon="profile_icon.png">

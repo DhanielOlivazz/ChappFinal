@@ -67,6 +67,14 @@
                            TextColor="Red"
                            IsVisible="False"/>
 
+                    <!-- Activity Indicator -->
+                    <ActivityIndicator x:Name="LoadingIndicator"
+                                       IsRunning="False"
+                                       IsVisible="False"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Color="RoyalBlue"/>
+
                     <StackLayout HorizontalOptions="Center" VerticalOptions="EndAndExpand">
                         <Label Text="¿No tienes una cuenta?" HorizontalOptions="Center"/>
 

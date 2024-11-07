@@ -20,40 +20,40 @@
 
                 <!-- Imagen de perfil -->
                 <Frame Grid.Row="0" Grid.ColumnSpan="2"
-                           HeightRequest="100"
-                           WidthRequest="100"
-                           CornerRadius="50"
-                           IsClippedToBounds="True"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
-                           Padding="0"
-                           HasShadow="False">
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   CornerRadius="50"
+                   IsClippedToBounds="True"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Padding="0"
+                   HasShadow="False">
                     <Image Source="profile_icon.png"
-                               HeightRequest="100"
-                               WidthRequest="100"
-                               Aspect="AspectFill"/>
+                       HeightRequest="100"
+                       WidthRequest="100"
+                       Aspect="AspectFill"/>
                 </Frame>
 
                 <!-- Nombre del usuario y estatus -->
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
-                                 HorizontalOptions="Center" Padding="0,10,0,0">
+                         HorizontalOptions="Center" Padding="0,10,0,0">
                     <Label Text="{Binding PerfilData.Nombre}"
-                               FontSize="22"
-                               FontAttributes="Bold"
-                               HorizontalOptions="Center"
-                               TextColor="Black"/>
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       TextColor="Black"/>
                     <Label Text="{Binding PerfilData.Campo}"
-                               FontSize="14"
-                               HorizontalOptions="Center"
-                               TextColor="Black"/>
+                       FontSize="14"
+                       HorizontalOptions="Center"
+                       TextColor="Black"/>
                 </StackLayout>
 
                 <!-- Información del perfil -->
                 <StackLayout Grid.Row="2" Grid.ColumnSpan="2"
-                                Padding="0,10,0,0">
+                        Padding="0,10,0,0">
                     <Label Text="Perfil"
-                               FontAttributes="Bold"
-                               HorizontalOptions="Start"/>
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"/>
                     <!-- BoxView 1 -->
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
 
@@ -84,32 +84,49 @@
                         <Label Text="Ubicacion" Grid.Column="1" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0"/>
                         <Label Text="{Binding PerfilData.Direccion}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
                     </Grid>
+
+                    <!-- Skills (Habilidades) -->
+                    <StackLayout Grid.Row="3" Grid.ColumnSpan="2" Padding="0,10,0,0">
+                        <Label Text="Habilidades"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+                        <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
+                        <!-- Habilidades como etiquetas -->
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="Programación" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
+                            <Label Text="Diseño UX" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
+                            <Label Text="Trabajo en equipo" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
+                        </StackLayout>
+                    </StackLayout>
+
                     <Grid ColumnDefinitions="*,*" Padding="10">
                         <Button  Grid.Column="0"
-                                     BackgroundColor="YellowGreen"
-                                     Text="Editar Perfil"
-                                     TextColor="White"
-                                     FontSize="14"
-                                     FontAttributes="Bold"
-                                     CornerRadius="10"
-                                     HorizontalOptions="End"
-                                     VerticalOptions="Center"
-                                     WidthRequest="120"
-                                     Margin="20,0,20,0"
-                                     Padding="10"/>
+                             BackgroundColor="YellowGreen"
+                             Text="Editar Perfil"
+                             x:Name="EditProfile"
+                             TextColor="White"
+                             Clicked="EditProfile_Clicked"
+                             FontSize="14"
+                             FontAttributes="Bold"
+                             CornerRadius="10"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"
+                             WidthRequest="120"
+                             Margin="20,0,20,0"
+                             Padding="10"/>
 
                         <Button  Grid.Column="1"
-                                     BackgroundColor="DarkRed"
-                                     Text="Cerrar Sesion"
-                                     TextColor="White"
-                                     FontSize="14"
-                                     FontAttributes="Bold"
-                                     CornerRadius="10"
-                                     HorizontalOptions="Start"
-                                     VerticalOptions="Center"
-                                     WidthRequest="120"
-                                     Margin="20,0,20,0"
-                                     Padding="10"/>
+                             BackgroundColor="DarkRed"
+                             Text="Cerrar Sesion"
+                             TextColor="White"
+                             FontSize="14"
+                             FontAttributes="Bold"
+                             CornerRadius="10"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             WidthRequest="120"
+                             Margin="20,0,20,0"
+                             Padding="10"/>
                     </Grid>
                     <!-- BoxView 2 (tamaño y márgenes iguales) -->
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
@@ -228,22 +245,6 @@
                                                WidthRequest="300"  
                                                HeightRequest="200"
                                                Margin="0,5"/>
-
-                                        <Grid Padding="0" Grid.Row="5" RowDefinitions="auto,auto">
-                                            <BoxView HeightRequest="1" 
-                                                     Grid.Row="0"
-                                                     BackgroundColor="#BDC3C7" 
-                                                     HorizontalOptions="FillAndExpand"/>
-
-                                            <Button Grid.Row="1" 
-                                                    HorizontalOptions="FillAndExpand"
-                                                    Margin="0,20,0,0"
-                                                    VerticalOptions="Center"
-                                                    Text="Aplicar"
-                                                    BackgroundColor="#093A4F"
-                                                    TextColor="White"
-                                                    CornerRadius="5"/>
-                                        </Grid>
                                     </Grid>
                                 </Frame>
                             </StackLayout>
@@ -335,6 +336,98 @@
                                     Margin="20,0,20,0"
                                     TextColor="White"
                                     Clicked="OnCerrarCrearPublicacionClicked" />
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+        <Frame x:Name="EditarPerfilFrame"
+            BackgroundColor="White"
+            Padding="20"
+            CornerRadius="10"
+            HasShadow="True"
+            IsVisible="False"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Margin="10">
+            <ScrollView>
+                <StackLayout Padding="10">
+                    <Label Text="Editar Perfil"
+                               FontSize="Title"
+                               FontAttributes="Bold"
+                               TextColor="Black"
+                               HorizontalOptions="Center" />
+                        <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
+
+                        <Image Source="user_icon.png" 
+                               WidthRequest="200"
+                               HeightRequest="150"
+                               Aspect="AspectFit"
+                               HorizontalOptions="Center"
+                               x:Name="fotoImageEdit"
+                               Margin="10"/>
+
+                        <Button Text="Seleccionar"
+                                x:Name="SeleccionarImageButtonEdit"
+                                BackgroundColor="#093A4F"
+                                Clicked="SeleccionarImageButtonEdit_Clicked"
+                                TextColor="White"
+                                HorizontalOptions="Center"/>
+
+
+                        <Label Text="Nombre Completo"
+                                FontSize="Subtitle"
+                                Margin="5"/>
+                        <Entry Placeholder="Ingresa tu nombre..."
+                                Text="{Binding}" 
+                                Margin="0,5,0,0" />
+
+                        <Label Text="Campo laboral"
+                                FontSize="Subtitle"
+                                Margin="5"/>
+                        <Entry Placeholder="En que te especializas?"
+                               Text="{Binding}" 
+                               Margin="0,5,0,0" />
+
+                        <Label Text="Email"
+                                FontSize="Subtitle"
+                                Margin="5"/>
+                        <Entry Placeholder="Email..."
+                                Text="{Binding}"
+                                Margin="0,5,0,0" />
+
+                        <Label Text="Ubicacion"
+                                FontSize="Subtitle"
+                                Margin="5"/>
+                        <Entry Placeholder="Ubicación..."
+                                Text="{Binding }"
+                                Margin="0,5,0,0" />
+
+                        <Label Text="Habilidades"
+                                FontSize="Subtitle"
+                                Margin="5"/>
+                        <Picker Title="Elige las opciones"
+                                Margin="0,0,10,0">
+                            <Picker.Items>
+                                <x:String>Programacion de alto nivel</x:String>
+                                <x:String>Fontaneria</x:String>
+                                <x:String>C#</x:String>
+                                <x:String>Electricismo</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        
+                        <Grid ColumnDefinitions="*,*" Margin="10,0,0,0">
+                            <Button Text="Guardar"
+                                    Grid.Column="0"
+                                    BackgroundColor="#093A4F"
+                                    Margin="20,0,20,0"
+                                    TextColor="White"/>
+
+                            <Button Text="Cerrar" 
+                                    Grid.Column="1"
+                                    BackgroundColor="DarkRed"
+                                    Margin="20,0,20,0"
+                                    TextColor="White"
+                                    Clicked="OnCerrarCrearEditClicked" />
                     </Grid>
                 </StackLayout>
             </ScrollView>
