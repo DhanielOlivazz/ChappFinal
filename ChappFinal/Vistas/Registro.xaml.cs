@@ -9,7 +9,9 @@ public partial class Registro : ContentPage
 	public Registro()
 	{
 		InitializeComponent();
-	}
+        IsRemembered();
+
+    }
     public async void OnRegisterClicked(object sender, EventArgs e)
     {
         LoadingIdicador(true);
@@ -60,6 +62,18 @@ public partial class Registro : ContentPage
         registerBtn.IsEnabled = !status;
         LoadingIndicator.IsRunning = status;
         LoadingIndicator.IsVisible = status;
+    }
+    private async void IsRemembered()
+    {
+        LoadingIdicador(true);
+        await Task.Delay(1000);
+        string? keep_session = SecureStorage.GetAsync("keep_session").Result;
+        if (keep_session == "true")
+        {
+            await Shell.Current.GoToAsync("//Menu");
+        }
+        LoadingIdicador(false);
+
     }
 
 }

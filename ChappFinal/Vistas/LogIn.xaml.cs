@@ -8,7 +8,9 @@ public partial class LogIn : ContentPage
 	public LogIn()
 	{
 		InitializeComponent();
-	}
+        IsRemembered();
+
+    }
     private async void OnRegisterTapped(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//registro");
@@ -30,6 +32,9 @@ public partial class LogIn : ContentPage
             LoadingIdicador(false);
             DisplayAlert(messages[0], messages[1], "OK");
 
+            // Guardar la sesión si el usuario lo desea
+            SaveSesion();
+
             await Shell.Current.GoToAsync("//Menu");
         }
         else
@@ -46,5 +51,26 @@ public partial class LogIn : ContentPage
         LoadingIndicator.IsRunning = status;
         LoadingIndicator.IsVisible = status;
         
+    }
+
+    private async void IsRemembered()
+    {
+        string? keep_session = SecureStorage.GetAsync("keep_session").Result;
+        if (keep_session == "true")
+        {
+            await Shell.Current.GoToAsync("//Menu");
+        }
+        
+    }
+    private async void SaveSesion()
+    {
+        if (SaveUserCheckBox.IsChecked)
+        {
+            await SecureStorage.SetAsync("keep_session","true");
+        }
+        else
+        {
+            await SecureStorage.SetAsync("keep_session", "false");
+        }
     }
 }
