@@ -58,8 +58,10 @@
 
                     <!-- Botón de Login -->
                     <Button Text="Iniciar sesión"
+                            x:Name="iniciarSesion"
                             BackgroundColor="#093A4F"
                             TextColor="White"
+                            IsEnabled="True"
                             Clicked="OnLogInClicked"/>
 
                     <!-- Mensaje de error -->
