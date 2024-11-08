@@ -84,16 +84,10 @@ namespace ChappFinal.Controllers
                 else
                 {
                     // En caso de error, intenta deserializar errores de validación en formato Dictionary<string, List<string>>
-                    var errors = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(responseContent);
-                    var errorMessages = new List<string> { "Error de validación" };
+                    var messageObj = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+                    string message = messageObj.ContainsKey("error") ? messageObj["error"] : "Error al iniciar sesión";
 
-                    // Construye una lista de mensajes de error específicos
-                    foreach (var error in errors)
-                    {
-                        errorMessages.Add($"{error.Key.ToUpper()}: {string.Join(", ", error.Value)}");
-                    }
-
-                    return errorMessages;
+                    return new List<string> { "Error", message };
                 }
             }
             catch (Exception e)

@@ -48,6 +48,8 @@
 
                     <!-- Botón de Registro -->
                     <Button Text="Registrar"
+                            x:Name="registerBtn"
+                            IsEnabled="True"
                             BackgroundColor="#093A4F"
                             TextColor="White"
                             Clicked="OnRegisterClicked"/>
