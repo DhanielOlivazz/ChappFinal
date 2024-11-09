@@ -279,6 +279,8 @@
                 </CollectionView>
             </Grid>
         </ScrollView>
+
+        <!-- Crear Publicacion -->
         <Frame x:Name="CrearPublicacionFrame"
                     BackgroundColor="White"
                     Padding="20"
@@ -288,7 +290,9 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Margin="10">
+            
             <ScrollView>
+                
                 <StackLayout Padding="10">
                     <Label Text="Crear Publicación"
                                 FontSize="Title"
@@ -318,6 +322,7 @@
                                Margin="5"/>
 
                     <Entry Placeholder="Título"
+                                x:Name="titleEntry"
                                 Text="{Binding NuevaPublicacion.Titulo}" 
                                 Margin="0,5,0,0" />
 
@@ -326,6 +331,7 @@
                                Margin="5"/>
 
                     <Entry Placeholder="Descripción"
+                           x:Name="descriptionEntry"
                            Text="{Binding NuevaPublicacion.Descripcion}"
                            Margin="0,5,0,0" />
 
@@ -334,6 +340,7 @@
                            Margin="5"/>
 
                     <Entry Placeholder="Ubicación"
+                            x:Name="locationEntry"
                            Text="{Binding NuevaPublicacion.Ubicacion}"
                            Margin="0,5,0,0" />
 
@@ -341,6 +348,7 @@
                                  FontSize="Subtitle"
                                  Margin="5"/>
                     <Picker Title="Elige las opciones"
+                                x:Name="categoryPicker"
                                 Margin="0,5,0,0">
                         <Picker.Items>
                             <x:String>Manposteria</x:String>
@@ -352,6 +360,7 @@
                            FontSize="Subtitle"
                            Margin="5"/>
                     <Entry Placeholder="Min"
+                           x:Name="min_budgetEntry"
                            Text="{Binding NuevaPublicacion.Ubicacion}"
                            Keyboard="Numeric"
                            Margin="0,5,0,0" />
@@ -359,12 +368,16 @@
                            FontSize="Subtitle"
                            Margin="5"/>
                     <Entry Placeholder="Max"
+                           x:Name="max_budgetEntry"
                            Text="{Binding NuevaPublicacion.Ubicacion}"
                            Keyboard="Numeric"
                            Margin="0,0,10,0" />
 
+                    <ActivityIndicator IsRunning="False" IsVisible="False" Color="RoyalBlue" x:Name="loadingIndicator" Margin="10"/>
                     <Grid ColumnDefinitions="*,*">
                         <Button Text="Guardar"
+                                    x:Name="saveBtn"
+                                    Clicked="saveBtn_Clicked"
                                     Grid.Column="0"
                                     BackgroundColor="#093A4F"
                                     Margin="20,0,20,0"
@@ -377,6 +390,7 @@
                                     TextColor="White"
                                     Clicked="OnCerrarCrearPublicacionClicked" />
                     </Grid>
+                    
                 </StackLayout>
             </ScrollView>
         </Frame>
