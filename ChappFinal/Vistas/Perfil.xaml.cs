@@ -10,6 +10,7 @@ public partial class Perfil : ContentPage
     public Perfil()
 	{
 		InitializeComponent();
+        
     }
     private void OnCrearPublicacionClicked(object sender, EventArgs e)
     {
@@ -52,7 +53,7 @@ public partial class Perfil : ContentPage
         Loading(true);
         DTO_Post post = await FillModel();
 
-        if (post != null)
+        if (post != null && _fileresult != null && !string.IsNullOrEmpty(_fileresult.FullPath))
         {
             PostController postController = new PostController();
 
@@ -74,9 +75,9 @@ public partial class Perfil : ContentPage
         else
         {
             Loading(false);
+            await DisplayAlert("Error", "La imagen es necesaria", "OK");
             return;
         }
-
         
     }
 

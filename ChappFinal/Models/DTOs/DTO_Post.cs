@@ -15,6 +15,6 @@ namespace ChappFinal.Models.DTOs
         public DateTime publication_date { get; set; }
         public string[] categories { get; set; }
         public float min_budget { get; set; }
-        public float? max_budget { get; set; }
+        public float max_budget { get; set; }
     }
 }

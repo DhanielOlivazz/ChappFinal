@@ -301,7 +301,7 @@
                                 HorizontalOptions="Center" />
 
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
-                    <Image Source="user_icon.ng" 
+                    <Image Source="user_icon.png" 
                                WidthRequest="200"
                                HeightRequest="150"
                                Aspect="AspectFit"

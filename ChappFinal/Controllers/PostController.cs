@@ -46,7 +46,7 @@ namespace ChappFinal.Controllers
                     content.Add(new StringContent(category), "categories[]");
                 }
                 content.Add(new StringContent(post.min_budget.ToString()), "min_budget");
-                content.Add(new StringContent(post.max_budget?.ToString() ?? ""), "max_budget");
+                content.Add(new StringContent(post.max_budget.ToString()), "max_budget");
 
                 // Realizar la solicitud POST
                 var response = await _client.PostAsync("createpost/", content);
