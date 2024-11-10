@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ChappFinal.Models
@@ -13,10 +15,11 @@ namespace ChappFinal.Models
         public string description { get; set; }
         public string location { get; set; }
         public string url_img_post { get; set; }
-        public DateTime publication_date { get; set; }
-        public string[] categories { get; set; }
-        public float min_budget { get; set; }
-        public float? max_budget { get; set; }
-
+        public string publication_date { get; set; }
+        //[JsonConverter(typeof(CategoriesConverter))]
+        //public List<string> categories { get; set; }
+        public string min_budget { get; set; }
+        public string max_budget { get; set; }
     }
+
 }

@@ -323,7 +323,6 @@
 
                     <Entry Placeholder="Título"
                                 x:Name="titleEntry"
-                                Text="{Binding NuevaPublicacion.Titulo}" 
                                 Margin="0,5,0,0" />
 
                     <Label Text="Descripcion"
@@ -332,7 +331,6 @@
 
                     <Entry Placeholder="Descripción"
                            x:Name="descriptionEntry"
-                           Text="{Binding NuevaPublicacion.Descripcion}"
                            Margin="0,5,0,0" />
 
                     <Label Text="Ubicacion"
@@ -341,7 +339,6 @@
 
                     <Entry Placeholder="Ubicación"
                             x:Name="locationEntry"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
                            Margin="0,5,0,0" />
 
                     <Label Text="Categoría"
@@ -361,7 +358,6 @@
                            Margin="5"/>
                     <Entry Placeholder="Min"
                            x:Name="min_budgetEntry"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
                            Keyboard="Numeric"
                            Margin="0,5,0,0" />
                     <Label Text="Presupuesto maximo"
@@ -369,7 +365,6 @@
                            Margin="5"/>
                     <Entry Placeholder="Max"
                            x:Name="max_budgetEntry"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
                            Keyboard="Numeric"
                            Margin="0,0,10,0" />
 

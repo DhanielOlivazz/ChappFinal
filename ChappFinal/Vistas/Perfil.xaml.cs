@@ -10,7 +10,6 @@ public partial class Perfil : ContentPage
     public Perfil()
 	{
 		InitializeComponent();
-        
     }
     private void OnCrearPublicacionClicked(object sender, EventArgs e)
     {
@@ -21,13 +20,14 @@ public partial class Perfil : ContentPage
     private void OnCerrarCrearPublicacionClicked(object sender, EventArgs e)
     {
         ClearEntries();
-
     }
 
     // Método para seleccionar una imagen de la galería
     private async void SeleccionarImageButton_Clicked(object sender, EventArgs e)
     {
         _fileresult = await MediaPicker.PickPhotoAsync();
+        if(_fileresult == null)
+            return;
         fotoImage.Source = ImageSource.FromStream(() => _fileresult.OpenReadAsync().Result);
 
 

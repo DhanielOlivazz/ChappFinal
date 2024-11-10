@@ -1,6 +1,7 @@
 ﻿using ChappFinal.Models;
 using ChappFinal.Models.DTOs;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 
@@ -81,6 +82,36 @@ namespace ChappFinal.Controllers
                 return new List<string> { "Excepción", "No estás loggeado" };
             }
         }
+
+        public async Task<List<Post>> GetPostsAsync()
+        {
+            try
+            {
+                var response = await _client.GetAsync("allposts/");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    var jsonResponse = JObject.Parse(responseContent);
+
+                    var posts = jsonResponse["posts"].ToObject<List<Post>>();
+                    return posts;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine(ex);
+                return null;
+            }
+        }
+
+
+
+
 
         // Método para determinar el tipo MIME de la imagen
         private string GetMimeType(string fileName)
