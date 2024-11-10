@@ -39,4 +39,12 @@ public partial class Inicio : ContentPage
         Posts = new ObservableCollection<Post>(posts);
         OnPropertyChanged(nameof(Posts)); // Notificar el cambio de propiedad
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Llama al método para cargar los posts, lo que actualizará la vista
+        await LoadPosts();
+    }
+
 }
