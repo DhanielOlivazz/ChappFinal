@@ -17,9 +17,11 @@ namespace ChappFinal.Models
         public string url_img_post { get; set; }
         public string publication_date { get; set; }
         //[JsonConverter(typeof(CategoriesConverter))]
-        //public List<string> categories { get; set; }
+        public List<string> categories { get; set; }
         public string min_budget { get; set; }
         public string max_budget { get; set; }
+
+        public string CategoriesText => categories != null ? string.Join(", ", categories) : string.Empty;
     }
 
 }
