@@ -43,7 +43,7 @@ public partial class Inicio : ContentPage
     {
         base.OnAppearing();
 
-        // Llama al método para cargar los posts, lo que actualizará la vista
+        // Llama al método para cargar los posts
         await LoadPosts();
     }
 

@@ -41,7 +41,7 @@ namespace ChappFinal.Controllers
                 content.Add(new StringContent(post.description), "description");
                 content.Add(new StringContent(post.location), "location");
                 content.Add(new StringContent(post.publication_date.ToString("yyyy-MM-dd")), "publication_date");
-                //content.Add(new StringContent(string.Join(",", post.categories)), "categories"); // Si hay categorías como array, lo unimos en un string
+
                 foreach (var category in post.categories)
                 {
                     content.Add(new StringContent(category), "categories[]");
@@ -56,9 +56,6 @@ namespace ChappFinal.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
-                    // En caso de éxito, intenta obtener un mensaje
-                    //var messageObj = JsonConvert.DeserializeObject<Dictionary<string, Post>>(responseContent);
-                    //string message = messageObj.ContainsKey("message") ? messageObj["message"] : "Publicación Exitosa"; // Obtiene el mensaje de la respuesta
 
                     return new List<string> { "Publicación", "Publicacion Exitosa" };
                 }
@@ -126,7 +123,7 @@ namespace ChappFinal.Controllers
                 case ".png":
                     return "image/png";
                 default:
-                    return "application/octet-stream"; // Tipo por defecto para otros archivos
+                    return "application/octet-stream";
             }
         }
 
