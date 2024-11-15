@@ -172,7 +172,7 @@
                 <CollectionView x:Name="PublicacionesCollectionView" 
                         Grid.Row="4" 
                         Grid.ColumnSpan="2"
-                        BindingContext="{Binding User.posts}">
+                        ItemsSource ="{Binding User.posts}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
