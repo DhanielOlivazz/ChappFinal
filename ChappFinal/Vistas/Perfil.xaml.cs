@@ -142,14 +142,14 @@ public partial class Perfil : ContentPage
     private async Task<DTO_Post> FillModel()
     {
         try
-        {
+        { 
             _post = new DTO_Post
             {
                 title = titleEntry.Text,
                 description = descriptionEntry.Text,
                 location = locationEntry.Text,
                 publication_date = DateTime.Now, // Obtiene la fecha actual
-                categories = new string[] { "Electricidad", "Manpostería", "Plomería" }, // Convierte el valor seleccionado en un array de strings
+                categories = new string[] { categoryPicker.SelectedItem.ToString() }, // Convierte el valor seleccionado en un array de strings
                 min_budget = float.Parse(min_budgetEntry.Text),
                 max_budget = float.Parse(max_budgetEntry.Text)
 

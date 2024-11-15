@@ -351,8 +351,11 @@
                                 Margin="0,5,0,0">
                         <Picker.Items>
                             <x:String>Manposteria</x:String>
-                            <x:String>Electricismo</x:String>
+                            <x:String>Electricidad</x:String>
                             <x:String>Fontaneria</x:String>
+                            <x:String>Ayudante de construcción</x:String>
+                            <x:String>Soldador</x:String>
+                            <x:String>Maestro de obra</x:String>
                         </Picker.Items>
                     </Picker>
                     <Label Text="Presupuesto minimo"
