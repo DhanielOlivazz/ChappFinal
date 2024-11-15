@@ -88,7 +88,7 @@
 
                                         <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5">
                                             <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
-                                                <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
+                                                <Image Source="pasador_de_ubicacion.png" WidthRequest="20" HeightRequest="20" />
                                                 <Label Text="{Binding location}" 
                                                        VerticalOptions="Center" 
                                                        TextColor="#34495E" 

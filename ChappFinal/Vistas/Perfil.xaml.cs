@@ -6,6 +6,7 @@ namespace ChappFinal.Vistas;
 public partial class Perfil : ContentPage
 {
     private DTO_Post _post;
+    private DTO_User _user;
     public FileResult _fileresult;
     public Perfil()
 	{
@@ -33,6 +34,41 @@ public partial class Perfil : ContentPage
 
     }
 
+
+    private async void saveBtnEditProfile_Clicked(object sender, EventArgs e)
+    {
+        DTO_User user = await FillModelUser();
+
+        if (user != null && _fileresult != null && !string.IsNullOrEmpty(_fileresult.FullPath))
+        {
+            UserController userController = new UserController();
+
+            var messages = await userController.UpdateProfileAsync(user, _fileresult);
+
+            if (messages[1] == "Perfil actualizado con exito")
+            {
+                Loading(false);
+                await DisplayAlert(messages[0], "Perfil actualizado con exito", "OK");
+                refresh();
+                
+            }
+            else
+            {
+                Loading(false);
+                await DisplayAlert(messages[0], messages[1], "OK");
+            }
+
+            ClearEntries();
+        }
+        else
+        {
+            Loading(false);
+            await DisplayAlert("Error", "La imagen es necesaria", "OK");
+            return;
+        }
+    }
+
+
     private void EditProfile_Clicked(object sender, EventArgs e)
     {
         EditarPerfilFrame.IsVisible = true;
@@ -45,6 +81,8 @@ public partial class Perfil : ContentPage
     private async void SeleccionarImageButtonEdit_Clicked(object sender, EventArgs e)
     {
         _fileresult = await MediaPicker.PickPhotoAsync();
+        if (_fileresult == null)
+            return;
         fotoImageEdit.Source = ImageSource.FromStream(() => _fileresult.OpenReadAsync().Result);
     }
 
@@ -111,7 +149,7 @@ public partial class Perfil : ContentPage
                 description = descriptionEntry.Text,
                 location = locationEntry.Text,
                 publication_date = DateTime.Now, // Obtiene la fecha actual
-                categories = new string[] { "ascsacd", "ascdsacd", "scdsdcs" }, // Convierte el valor seleccionado en un array de strings
+                categories = new string[] { "Electricidad", "Manpostería", "Plomería" }, // Convierte el valor seleccionado en un array de strings
                 min_budget = float.Parse(min_budgetEntry.Text),
                 max_budget = float.Parse(max_budgetEntry.Text)
 
@@ -124,6 +162,38 @@ public partial class Perfil : ContentPage
         
 
         return _post;
+    }
+
+    private async Task<DTO_User> FillModelUser()
+    {
+        
+        try
+        {
+            _user= new DTO_User
+            {
+                name = fullnameEntry.Text,
+                phone = phoneEntry.Text,
+                location = locationPEntry.Text,
+                description = descriptionPEntry.Text,
+                skills = new List<string> { "sdsd","sdasd"}
+            };
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", "Debes llenar todos los campos", "OK");
+        }
+
+
+        return _user;
+    }
+
+    public void refresh()
+    {
+        usernameLabel.Text = _user.name;
+        contatoLabel.Text = _user.phone;
+        locationLabel.Text = _user.location;
+        locationLabel.Text = _user.description;
+        profileImage.Source = _fileresult.FullPath;
     }
 
     private void Loading(bool status)
@@ -145,4 +215,5 @@ public partial class Perfil : ContentPage
         max_budgetEntry.Text = "";
     }
 
+    
 }

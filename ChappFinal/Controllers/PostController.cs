@@ -34,7 +34,7 @@ namespace ChappFinal.Controllers
                 // Crear un ByteArrayContent con la imagen
                 var byteArrayContent = new ByteArrayContent(imageBytes);
                 byteArrayContent.Headers.ContentType = new MediaTypeHeaderValue(mimeType); // Establecer el tipo MIME
-                content.Add(byteArrayContent, "post_img_file", selectedFile.FileName); // 'file' es el nombre del campo de imagen en el servidor
+                content.Add(byteArrayContent, "post_img_file", selectedFile.FileName); // 'post_img_file' es el nombre del campo de imagen en el servidor
 
                 // Agregar los demás campos del DTO_Post como StringContent
                 content.Add(new StringContent(post.title), "title");
