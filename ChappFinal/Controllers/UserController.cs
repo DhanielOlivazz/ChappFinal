@@ -1,5 +1,8 @@
 ﻿using ChappFinal.Models.DTOs;
 using System.Net.Http.Headers;
+using ChappFinal.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace ChappFinal.Controllers
@@ -60,13 +63,42 @@ namespace ChappFinal.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Errorrrrrrrrrrrrrrrrrrrrrrr"+e.ToString() );
                 return new List<string> { "Error", e.ToString() };
                 throw;
             }
 
         }
 
+
+        public async Task<Users> GetProfileAsync()
+        {
+            try
+            {
+                var response = await _client.GetAsync("myprofile/");
+                var responseContent = await response.Content.ReadAsStringAsync();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine(responseContent);
+                    Users user = new Users();
+
+                    var jsonResponse = JObject.Parse(responseContent);
+
+                    //user = JsonConvert.DeserializeObject<Users>(responseContent);
+                    user = jsonResponse["user"].ToObject<Users>();
+                    return user;
+                }
+
+                Console.WriteLine(responseContent);
+                return null;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("--------------------------------------------------------------------------------   "+e.Message);
+                return null;
+                throw;
+            }
+        }
 
         private string GetMimeType(string fileName)
         {

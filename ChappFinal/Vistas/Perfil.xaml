@@ -28,7 +28,7 @@
                    VerticalOptions="Center"
                    Padding="0"
                    HasShadow="False">
-                    <Image Source="profile_icon.png"
+                    <Image Source="{Binding User.url_img_avatar}"
                        x:Name="profileImage"
                        HeightRequest="100"
                        WidthRequest="100"
@@ -37,13 +37,17 @@
 
                 <!-- Nombre del usuario y estatus -->
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
-                         HorizontalOptions="Center" Padding="0,10,0,0">
-                    <Label Text="{Binding PerfilData.Nombre}"
+                         HorizontalOptions="Center" Padding="0,10,0,0"
+                         >
+                    
+                    <Label Text="{Binding User.name}"
+                           x:Name="nameLabel"
                        FontSize="22"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
                        TextColor="Black"/>
-                    <Label Text="{Binding PerfilData.Campo}"
+                    <Label Text="{Binding User.description}"
+                       x:Name="labelDescription"
                        FontSize="14"
                        HorizontalOptions="Center"
                        TextColor="Black"/>
@@ -63,28 +67,28 @@
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="user_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Usuario" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.UserName}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="usernameLabel"/>
+                        <Label Text="{Binding User.name}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="usernameLabel"/>
                     </Grid>
 
                     <!-- Contacto -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="contact_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Contacto" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Contacto}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="contatoLabel"/>
+                        <Label Text="{Binding User.phone}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="contatoLabel"/>
                     </Grid>
 
                     <!-- Email -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Email" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Correo}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" x:Name="emailLabel"/>
+                        <Label Text="{Binding User.email}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" x:Name="emailLabel"/>
                     </Grid>
 
                     <!-- Ubicacion -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="pasador_de_ubicacion.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Ubicacion" Grid.Column="1" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Direccion}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="locationLabel"/>
+                        <Label Text="{Binding User.location}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="locationLabel"/>
                     </Grid>
 
                     <!-- Skills (Habilidades) -->
@@ -95,9 +99,7 @@
                         <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
                         <!-- Habilidades como etiquetas -->
                         <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Label Text="Programación" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
-                            <Label Text="Diseño UX" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
-                            <Label Text="Trabajo en equipo" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
+                            <Label Text="{Binding User.SkillsText}" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -170,7 +172,7 @@
                 <CollectionView x:Name="PublicacionesCollectionView" 
                         Grid.Row="4" 
                         Grid.ColumnSpan="2"
-                        ItemsSource="{Binding Publicaciones}">
+                        BindingContext="{Binding User.posts}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -195,7 +197,7 @@
 
                                         <Label Grid.Row="0"
                                                Margin="0,0,0,5"
-                                               Text="{Binding Titulo}"
+                                               Text="{Binding title}"
                                                FontAttributes="Bold"
                                                FontSize="18"
                                                TextColor="#2C3E50"
@@ -433,7 +435,6 @@
                                 Margin="5"/>
                         <Entry Placeholder="Ingresa tu nombre..."
                                 x:Name="fullnameEntry"
-                                Text="{Binding}" 
                                 Margin="0,5,0,0" />
 
                         <Label Text="Campo laboral"
@@ -441,7 +442,6 @@
                                 Margin="5"/>
                         <Entry Placeholder="En que te especializas?"
                                x:Name="descriptionPEntry"
-                               Text="{Binding}" 
                                Margin="0,5,0,0" />
 
                         <Label Text="Contacto"
@@ -450,7 +450,6 @@
                         <Entry Placeholder="Número de contacto..."
                                x:Name="phoneEntry"
                                Keyboard="Email"
-                                Text="{Binding}"
                                 Margin="0,5,0,0" />
 
                         <Label Text="Ubicacion"
@@ -458,7 +457,6 @@
                                 Margin="5"/>
                         <Entry Placeholder="Ubicación..."
                                 x:Name="locationPEntry"
-                                Text="{Binding }"
                                 Margin="0,5,0,0" />
 
                         <Label Text="Habilidades"

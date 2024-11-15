@@ -1,5 +1,7 @@
 using ChappFinal.Controllers;
+using ChappFinal.Models;
 using ChappFinal.Models.DTOs;
+using System.Collections.ObjectModel;
 
 namespace ChappFinal.Vistas;
 
@@ -8,9 +10,14 @@ public partial class Perfil : ContentPage
     private DTO_Post _post;
     private DTO_User _user;
     public FileResult _fileresult;
+    public Users User { get; set; }
+    public ObservableCollection<Post> Posts { get; set; }
     public Perfil()
 	{
 		InitializeComponent();
+        LoadProfile();
+        BindingContext = this;
+        
     }
     private void OnCrearPublicacionClicked(object sender, EventArgs e)
     {
@@ -34,6 +41,13 @@ public partial class Perfil : ContentPage
 
     }
 
+    public async Task LoadProfile()
+    {
+        UserController userController = new UserController();
+        User = await userController.GetProfileAsync();
+        Posts = new ObservableCollection<Post>(User.posts);
+        OnPropertyChanged(nameof(User)); // Notificar el cambio de propiedad
+    }
 
     private async void saveBtnEditProfile_Clicked(object sender, EventArgs e)
     {
@@ -49,6 +63,7 @@ public partial class Perfil : ContentPage
             {
                 Loading(false);
                 await DisplayAlert(messages[0], "Perfil actualizado con exito", "OK");
+                BindingContext = this;
                 refresh();
                 
             }
@@ -71,6 +86,7 @@ public partial class Perfil : ContentPage
 
     private void EditProfile_Clicked(object sender, EventArgs e)
     {
+        LoadProfile();
         EditarPerfilFrame.IsVisible = true;
     }
     private void OnCerrarCrearEditClicked(object sender, EventArgs e)
@@ -175,7 +191,7 @@ public partial class Perfil : ContentPage
                 phone = phoneEntry.Text,
                 location = locationPEntry.Text,
                 description = descriptionPEntry.Text,
-                skills = new List<string> { "sdsd","sdasd"}
+                skills = new List<string> { skillsPicker.SelectedItem.ToString()}
             };
         }
         catch (Exception ex)
@@ -192,7 +208,7 @@ public partial class Perfil : ContentPage
         usernameLabel.Text = _user.name;
         contatoLabel.Text = _user.phone;
         locationLabel.Text = _user.location;
-        locationLabel.Text = _user.description;
+        labelDescription.Text = _user.description;
         profileImage.Source = _fileresult.FullPath;
     }
 

@@ -16,5 +16,8 @@ namespace ChappFinal.Models
         public string description { get; set; }
         public string url_img_avatar { get; set; }
         public List<string> skills { get; set; }
+        public List<Post> posts { get; set; }
+
+        public string SkillsText => skills != null ? string.Join(", ", skills) : string.Empty;
     }
 }
