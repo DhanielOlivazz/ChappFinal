@@ -50,14 +50,13 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Frame BorderColor="DarkGray" 
-                                       BackgroundColor="White" 
-                                       CornerRadius="10" 
-                                       Padding="10" 
-                                       Margin="0,10,0,10" 
-                                       HorizontalOptions="FillAndExpand" 
-                                       VerticalOptions="FillAndExpand" 
-                                       HeightRequest="500"
+                                <Frame BorderColor="DarkGray"
+                                       BackgroundColor="White"
+                                       CornerRadius="10"
+                                       Padding="0"
+                                       Margin="0,10"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="Start"
                                        HasShadow="True">
                                     <Grid Padding="10">
                                         <Grid.RowDefinitions>
@@ -68,10 +67,36 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                             <!-- Nueva fila para presupuesto -->
                                         </Grid.RowDefinitions>
+                                        <Grid ColumnDefinitions="auto,*" Padding="0,10,10,10" Grid.Row="0">
+                                            <Frame Grid.Column="0"
+                                                   HeightRequest="50"
+                                                   WidthRequest="50"
+                                                   CornerRadius="50"
+                                                   IsClippedToBounds="True"
+                                                   HorizontalOptions="Start"
+                                                   VerticalOptions="Start"
+                                                   Padding="0"
+                                                   Margin="0"
+                                                   HasShadow="False">
+                                                <Image Source="profile_icon.png"
+                                                       x:Name="profileImage"
+                                                       HeightRequest="50"
+                                                       WidthRequest="50"
+                                                       Aspect="AspectFill"/>
+                                            </Frame>
+                                            <Label Text="Un negro"
+                                                   FontSize="16"
+                                                   Grid.Column="1"
+                                                   FontAttributes="Bold"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"
+                                                   Margin="10"/>
+                                        </Grid>
 
-                                        <Label Grid.Row="0"
+                                        <Label Grid.Row="1"
                                                Margin="0,0,0,5"
                                                Text="{Binding title}"
                                                FontAttributes="Bold"
@@ -82,46 +107,45 @@
 
                                         <Label x:Name="DescripcionLabel"
                                                Margin="0,0,0,5"
-                                               Grid.Row="1"
+                                               Grid.Row="2"
                                                MaxLines="3" 
-                                               Text="{Binding descripcion}"
+                                               Text="{Binding description}"
                                                FontSize="14"
                                                TextColor="#34495E"
                                                VerticalOptions="Start"
                                                HorizontalOptions="Start"/>
 
-                                        <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5">
-                                            <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
-                                                <Image Source="pasador_de_ubicacion.png" WidthRequest="20" HeightRequest="20" />
-                                                <Label Text="{Binding location}" 
-                                                       VerticalOptions="Center" 
-                                                       TextColor="#34495E" 
-                                                       FontSize="15"/>
-                                            </HorizontalStackLayout>
-                                            <Label Text="20/50"
+                                        <Grid Grid.Row="3" ColumnDefinitions="Auto,*" Margin="0,5">
+                                            <Image Source="pasador_de_ubicacion.png" Grid.Column="0" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="{Binding location}" 
+                                                   VerticalOptions="Center" 
+                                                   HorizontalOptions="Start"
                                                    Grid.Column="1"
-                                                   x:Name="counter"
-                                                   TextColor="#34495E"
-                                                   FontSize="15"
-                                                   HorizontalOptions="End"
-                                                   VerticalOptions="Center"/>
+                                                   TextColor="#34495E" 
+                                                   FontSize="15"/>
                                         </Grid>
 
                                         <!-- Presupuesto máximo y mínimo -->
-                                        <Grid Grid.Row="3" ColumnDefinitions="*,*" Margin="0,5">
-                                            <Label Text="Presupuesto Mínimo: " 
+                                        <Grid Grid.Row="4" RowDefinitions="auto,auto" ColumnDefinitions="auto,auto" Margin="0,5">
+                                            <Label Text="Presupuesto Mínimo:" 
                                                    FontAttributes="Bold" 
+                                                   Grid.Column="0"
+                                                   Grid.Row="0"
                                                    FontSize="14" 
                                                    TextColor="#34495E" 
-                                                   VerticalOptions="Center"/>
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"/>
                                             <Label Text="{Binding min_budget}" 
                                                    FontSize="14" 
+                                                   Grid.Column="1"
+                                                   Grid.Row="0"
                                                    TextColor="#2980B9" 
                                                    VerticalOptions="Center"
-                                                   HorizontalOptions="End"/>
+                                                   HorizontalOptions="Start"/>
 
                                             <Label Text="Presupuesto Máximo: " 
-                                                   Grid.Column="1"
+                                                   Grid.Column="0"
+                                                   Grid.Row="1"
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
                                                    TextColor="#34495E" 
@@ -129,14 +153,15 @@
                                                    HorizontalOptions="Start"/>
                                             <Label Text="{Binding max_budget}" 
                                                    Grid.Column="1"
+                                                   Grid.Row="1"
                                                    FontSize="14" 
                                                    TextColor="#2980B9" 
                                                    VerticalOptions="Center"
-                                                   HorizontalOptions="End"/>
+                                                   HorizontalOptions="Start"/>
                                         </Grid>
 
                                         <!-- Sección de Categorías o Tags -->
-                                        <StackLayout Grid.Row="4" Orientation="Horizontal" Margin="0,5">
+                                        <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="0,5">
                                             <Label Text="Categorías: " 
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
@@ -147,14 +172,13 @@
                                         </StackLayout>
 
                                         <!-- Imagen con tamaño predefinido -->
-                                        <Image Grid.Row="5"
+                                        <Image Grid.Row="6"
                                                Source="{Binding url_img_post}"
-                                               Aspect="AspectFit"
-                                               WidthRequest="300"  
-                                               HeightRequest="200"
-                                               Margin="0,5"/>
+                                               Aspect="AspectFill"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand"/>
 
-                                        <Grid Padding="0" Grid.Row="6" RowDefinitions="auto,auto">
+                                        <Grid Padding="0" Grid.Row="7" RowDefinitions="auto,auto">
                                             <BoxView HeightRequest="1" 
                                                      Grid.Row="0"
                                                      BackgroundColor="#BDC3C7" 
