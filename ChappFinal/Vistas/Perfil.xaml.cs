@@ -137,6 +137,8 @@ public partial class Perfil : ContentPage
             }
 
             ClearEntries();
+            await Task.Delay(1000);
+            await LoadProfile();
         }
         else
         {
