@@ -5,8 +5,10 @@
              xmlns:local="clr-namespace:ChappFinal.Vistas"
              Title="Inicio">
     <Grid>
+        
         <ScrollView>
             <VerticalStackLayout>
+                
                 <Grid Padding="0,5,0,5" BackgroundColor="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -34,14 +36,16 @@
                               HorizontalOptions="End"
                               BackgroundColor="Transparent"
                               Clicked="OnNotificacionesClicked" />
+                    
                 </Grid>
+                <ActivityIndicator IsRunning="False" IsVisible="False" Color="RoyalBlue" x:Name="loadingIndicator" Margin="10"/>
 
                 <BoxView HeightRequest="1"
                        BackgroundColor="#093A4F"          
                        HorizontalOptions="FillAndExpand"/>
 
                 <CollectionView x:Name="PublicacionesCollectionView" 
-                             ItemsSource="{Binding Publicaciones}"
+                             ItemsSource="{Binding Posts}"
                              Margin="5,0,5,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -69,7 +73,7 @@
 
                                         <Label Grid.Row="0"
                                                Margin="0,0,0,5"
-                                               Text="{Binding Titulo}"
+                                               Text="{Binding title}"
                                                FontAttributes="Bold"
                                                FontSize="18"
                                                TextColor="#2C3E50"
@@ -80,7 +84,7 @@
                                                Margin="0,0,0,5"
                                                Grid.Row="1"
                                                MaxLines="3" 
-                                               Text="{Binding Descripcion}"
+                                               Text="{Binding descripcion}"
                                                FontSize="14"
                                                TextColor="#34495E"
                                                VerticalOptions="Start"
@@ -88,8 +92,8 @@
 
                                         <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5">
                                             <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
-                                                <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
-                                                <Label Text="{Binding Ubicacion}" 
+                                                <Image Source="pasador_de_ubicacion.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="{Binding location}" 
                                                        VerticalOptions="Center" 
                                                        TextColor="#34495E" 
                                                        FontSize="15"/>
@@ -110,7 +114,7 @@
                                                    FontSize="14" 
                                                    TextColor="#34495E" 
                                                    VerticalOptions="Center"/>
-                                            <Label Text="{Binding PresupuestoMinimo}" 
+                                            <Label Text="{Binding min_budget}" 
                                                    FontSize="14" 
                                                    TextColor="#2980B9" 
                                                    VerticalOptions="Center"
@@ -123,7 +127,7 @@
                                                    TextColor="#34495E" 
                                                    VerticalOptions="Center"
                                                    HorizontalOptions="Start"/>
-                                            <Label Text="{Binding PresupuestoMaximo}" 
+                                            <Label Text="{Binding max_budget}" 
                                                    Grid.Column="1"
                                                    FontSize="14" 
                                                    TextColor="#2980B9" 
@@ -137,15 +141,15 @@
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
                                                    TextColor="#34495E"/>
-                                            <Label Text="Electricismo, Manposteria" 
+                                            <Label Text="{Binding CategoriesText}" 
                                                    TextColor="#2980B9" 
                                                    FontSize="14"/>
                                         </StackLayout>
 
                                         <!-- Imagen con tamaño predefinido -->
                                         <Image Grid.Row="5"
-                                               Source="{Binding Imagen}"
-                                               Aspect="AspectFill"
+                                               Source="{Binding url_img_post}"
+                                               Aspect="AspectFit"
                                                WidthRequest="300"  
                                                HeightRequest="200"
                                                Margin="0,5"/>

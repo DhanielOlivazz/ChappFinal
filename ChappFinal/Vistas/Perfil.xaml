@@ -28,7 +28,8 @@
                    VerticalOptions="Center"
                    Padding="0"
                    HasShadow="False">
-                    <Image Source="profile_icon.png"
+                    <Image Source="{Binding User.url_img_avatar}"
+                       x:Name="profileImage"
                        HeightRequest="100"
                        WidthRequest="100"
                        Aspect="AspectFill"/>
@@ -36,18 +37,23 @@
 
                 <!-- Nombre del usuario y estatus -->
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
-                         HorizontalOptions="Center" Padding="0,10,0,0">
-                    <Label Text="{Binding PerfilData.Nombre}"
+                         HorizontalOptions="Center" Padding="0,10,0,0"
+                         >
+                    
+                    <Label Text="{Binding User.name}"
+                           x:Name="nameLabel"
                        FontSize="22"
                        FontAttributes="Bold"
                        HorizontalOptions="Center"
                        TextColor="Black"/>
-                    <Label Text="{Binding PerfilData.Campo}"
+                    <Label Text="{Binding User.description}"
+                       x:Name="labelDescription"
                        FontSize="14"
                        HorizontalOptions="Center"
                        TextColor="Black"/>
                 </StackLayout>
 
+                <!-- Campos que se muestran al publico -->
                 <!-- Información del perfil -->
                 <StackLayout Grid.Row="2" Grid.ColumnSpan="2"
                         Padding="0,10,0,0">
@@ -61,28 +67,28 @@
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="user_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Usuario" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.UserName}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Label Text="{Binding User.name}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="usernameLabel"/>
                     </Grid>
 
                     <!-- Contacto -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="contact_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Contacto" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Contacto}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Label Text="{Binding User.phone}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="contatoLabel"/>
                     </Grid>
 
                     <!-- Email -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="email_icon.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Email" Grid.Column="1" TextColor="Black" FontAttributes="Bold" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Correo}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Label Text="{Binding User.email}" TextColor="Black" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" x:Name="emailLabel"/>
                     </Grid>
 
                     <!-- Ubicacion -->
                     <Grid Padding="10" ColumnDefinitions="Auto,Auto,*">
                         <Image Source="pasador_de_ubicacion.png" WidthRequest="24" HeightRequest="24" VerticalOptions="Center" />
                         <Label Text="Ubicacion" Grid.Column="1" FontAttributes="Bold" TextColor="Black" VerticalOptions="Center" Padding="10,0,0,0"/>
-                        <Label Text="{Binding PerfilData.Direccion}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center"/>
+                        <Label Text="{Binding User.location}" Grid.Column="2" TextColor="Black" HorizontalOptions="End" VerticalOptions="Center" x:Name="locationLabel"/>
                     </Grid>
 
                     <!-- Skills (Habilidades) -->
@@ -93,9 +99,7 @@
                         <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
                         <!-- Habilidades como etiquetas -->
                         <StackLayout Orientation="Horizontal" Spacing="10">
-                            <Label Text="Programación" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
-                            <Label Text="Diseño UX" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
-                            <Label Text="Trabajo en equipo" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
+                            <Label Text="{Binding User.SkillsText}" Padding="5,5" BackgroundColor="LightGray" VerticalOptions="Center"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -168,7 +172,7 @@
                 <CollectionView x:Name="PublicacionesCollectionView" 
                         Grid.Row="4" 
                         Grid.ColumnSpan="2"
-                        ItemsSource="{Binding Publicaciones}">
+                        ItemsSource ="{Binding User.posts}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -193,7 +197,7 @@
 
                                         <Label Grid.Row="0"
                                                Margin="0,0,0,5"
-                                               Text="{Binding Titulo}"
+                                               Text="{Binding title}"
                                                FontAttributes="Bold"
                                                FontSize="18"
                                                TextColor="#2C3E50"
@@ -204,7 +208,7 @@
                                                Margin="0,0,0,5"
                                                Grid.Row="1"
                                                MaxLines="3" 
-                                               Text="{Binding Descripcion}"
+                                               Text="{Binding description}"
                                                FontSize="14"
                                                TextColor="#34495E"
                                                VerticalOptions="Start"
@@ -212,8 +216,8 @@
 
                                         <Grid Grid.Row="2" ColumnDefinitions="Auto,*" Margin="0,5">
                                             <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
-                                                <Image Source="ubicacion_icono.png" WidthRequest="20" HeightRequest="20" />
-                                                <Label Text="{Binding Ubicacion}" 
+                                                <Image Source="pasador_de_ubicacion.png" WidthRequest="20" HeightRequest="20" />
+                                                <Label Text="{Binding location}" 
                                                        VerticalOptions="Center" 
                                                        TextColor="#34495E" 
                                                        FontSize="15"/>
@@ -232,7 +236,7 @@
                                                    FontSize="14" 
                                                    TextColor="#34495E" 
                                                    VerticalOptions="Center"/>
-                                            <Label Text="{Binding PresupuestoMinimo}" 
+                                            <Label Text="{Binding min_budget}" 
                                                    FontSize="14" 
                                                    TextColor="#2980B9" 
                                                    VerticalOptions="Center"
@@ -245,7 +249,7 @@
                                                    TextColor="#34495E" 
                                                    VerticalOptions="Center"
                                                    HorizontalOptions="Start"/>
-                                            <Label Text="{Binding PresupuestoMaximo}" 
+                                            <Label Text="{Binding max_budget}" 
                                                    Grid.Column="1"
                                                    FontSize="14" 
                                                    TextColor="#2980B9" 
@@ -259,14 +263,14 @@
                                                    FontAttributes="Bold" 
                                                    FontSize="14" 
                                                    TextColor="#34495E"/>
-                                            <Label Text="Electricismo, Manposteria" 
+                                            <Label Text="{Binding CategoriesText}" 
                                                    TextColor="#2980B9" 
                                                    FontSize="14"/>
                                         </StackLayout>
 
                                         <!-- Imagen con tamaño predefinido -->
                                         <Image Grid.Row="5"
-                                               Source="{Binding Imagen}"
+                                               Source="{Binding url_img_post}"
                                                Aspect="AspectFill"
                                                WidthRequest="300"  
                                                HeightRequest="200"
@@ -279,6 +283,8 @@
                 </CollectionView>
             </Grid>
         </ScrollView>
+
+        <!-- Crear Publicacion -->
         <Frame x:Name="CrearPublicacionFrame"
                     BackgroundColor="White"
                     Padding="20"
@@ -288,7 +294,9 @@
                     VerticalOptions="Center"
                     HorizontalOptions="Center"
                     Margin="10">
+            
             <ScrollView>
+                
                 <StackLayout Padding="10">
                     <Label Text="Crear Publicación"
                                 FontSize="Title"
@@ -297,7 +305,7 @@
                                 HorizontalOptions="Center" />
 
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>
-                    <Image Source="user_icon.ng" 
+                    <Image Source="user_icon.png" 
                                WidthRequest="200"
                                HeightRequest="150"
                                Aspect="AspectFit"
@@ -318,7 +326,7 @@
                                Margin="5"/>
 
                     <Entry Placeholder="Título"
-                                Text="{Binding NuevaPublicacion.Titulo}" 
+                                x:Name="titleEntry"
                                 Margin="0,5,0,0" />
 
                     <Label Text="Descripcion"
@@ -326,7 +334,7 @@
                                Margin="5"/>
 
                     <Entry Placeholder="Descripción"
-                           Text="{Binding NuevaPublicacion.Descripcion}"
+                           x:Name="descriptionEntry"
                            Margin="0,5,0,0" />
 
                     <Label Text="Ubicacion"
@@ -334,52 +342,63 @@
                            Margin="5"/>
 
                     <Entry Placeholder="Ubicación"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                            x:Name="locationEntry"
                            Margin="0,5,0,0" />
 
                     <Label Text="Categoría"
                                  FontSize="Subtitle"
                                  Margin="5"/>
                     <Picker Title="Elige las opciones"
+                                x:Name="categoryPicker"
                                 Margin="0,5,0,0">
                         <Picker.Items>
                             <x:String>Manposteria</x:String>
-                            <x:String>Electricismo</x:String>
+                            <x:String>Electricidad</x:String>
                             <x:String>Fontaneria</x:String>
+                            <x:String>Ayudante de construcción</x:String>
+                            <x:String>Soldador</x:String>
+                            <x:String>Maestro de obra</x:String>
                         </Picker.Items>
                     </Picker>
                     <Label Text="Presupuesto minimo"
                            FontSize="Subtitle"
                            Margin="5"/>
                     <Entry Placeholder="Min"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                           x:Name="min_budgetEntry"
                            Keyboard="Numeric"
                            Margin="0,5,0,0" />
                     <Label Text="Presupuesto maximo"
                            FontSize="Subtitle"
                            Margin="5"/>
                     <Entry Placeholder="Max"
-                           Text="{Binding NuevaPublicacion.Ubicacion}"
+                           x:Name="max_budgetEntry"
                            Keyboard="Numeric"
                            Margin="0,0,10,0" />
 
+                    <ActivityIndicator IsRunning="False" IsVisible="False" Color="RoyalBlue" x:Name="loadingIndicator" Margin="10"/>
                     <Grid ColumnDefinitions="*,*">
                         <Button Text="Guardar"
+                                    x:Name="saveBtn"
+                                    Clicked="saveBtn_Clicked"
                                     Grid.Column="0"
                                     BackgroundColor="#093A4F"
                                     Margin="20,0,20,0"
                                     TextColor="White"/>
 
-                        <Button Text="Cerrar" 
+                        <Button Text="Cerrar"
+                                    x:Name="cerrarBtn"
                                     Grid.Column="1"
                                     BackgroundColor="DarkRed"
                                     Margin="20,0,20,0"
                                     TextColor="White"
                                     Clicked="OnCerrarCrearPublicacionClicked" />
                     </Grid>
+                    
                 </StackLayout>
             </ScrollView>
         </Frame>
+
+        <!-- Editar Perfil -->
         <Frame x:Name="EditarPerfilFrame"
             BackgroundColor="White"
             Padding="20"
@@ -391,7 +410,7 @@
             Margin="10">
             <ScrollView>
                 <StackLayout Padding="10">
-                    <Label Text="Editar Perfil"
+                        <Label Text="Editar Perfil"
                                FontSize="Title"
                                FontAttributes="Bold"
                                TextColor="Black"
@@ -418,52 +437,58 @@
                                 FontSize="Subtitle"
                                 Margin="5"/>
                         <Entry Placeholder="Ingresa tu nombre..."
-                                Text="{Binding}" 
+                                x:Name="fullnameEntry"
                                 Margin="0,5,0,0" />
 
                         <Label Text="Campo laboral"
                                 FontSize="Subtitle"
                                 Margin="5"/>
                         <Entry Placeholder="En que te especializas?"
-                               Text="{Binding}" 
+                               x:Name="descriptionPEntry"
                                Margin="0,5,0,0" />
 
-                        <Label Text="Email"
+                        <Label Text="Contacto"
                                 FontSize="Subtitle"
                                 Margin="5"/>
-                        <Entry Placeholder="Email..."
+                        <Entry Placeholder="Número de contacto..."
+                               x:Name="phoneEntry"
                                Keyboard="Email"
-                                Text="{Binding}"
                                 Margin="0,5,0,0" />
 
                         <Label Text="Ubicacion"
                                 FontSize="Subtitle"
                                 Margin="5"/>
                         <Entry Placeholder="Ubicación..."
-                                Text="{Binding }"
+                                x:Name="locationPEntry"
                                 Margin="0,5,0,0" />
 
                         <Label Text="Habilidades"
                                 FontSize="Subtitle"
                                 Margin="5"/>
                         <Picker Title="Elige las opciones"
+                                x:Name="skillsPicker"
                                 Margin="0,0,10,0">
                             <Picker.Items>
-                                <x:String>Programacion de alto nivel</x:String>
-                                <x:String>Fontaneria</x:String>
-                                <x:String>C#</x:String>
-                                <x:String>Electricismo</x:String>
+                                <x:String>Ingeniero Civil</x:String>
+                                <x:String>Fontaner@</x:String>
+                                <x:String>Albañil</x:String>
+                                <x:String>Electricista</x:String>
+                                <x:String>Ayudante de Construcción</x:String>
                             </Picker.Items>
                         </Picker>
-                        
-                        <Grid ColumnDefinitions="*,*" Margin="10,0,0,0">
+                    
+                    <ActivityIndicator IsRunning="False" IsVisible="False" Color="RoyalBlue" x:Name="loadingIndicatorE" Margin="10"/>
+                    <Grid ColumnDefinitions="*,*" Margin="10,0,0,0">
                             <Button Text="Guardar"
+                                    x:Name="saveBtnEditProfile"
                                     Grid.Column="0"
                                     BackgroundColor="#093A4F"
                                     Margin="20,0,20,0"
-                                    TextColor="White"/>
+                                    TextColor="White"
+                                    Clicked="saveBtnEditProfile_Clicked"/>
 
                             <Button Text="Cerrar" 
+                                    x:Name="closeBtnEditProfile"
                                     Grid.Column="1"
                                     BackgroundColor="DarkRed"
                                     Margin="20,0,20,0"
