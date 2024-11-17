@@ -227,33 +227,36 @@
 
                                         <!-- Presupuesto -->
                                         <HorizontalStackLayout >
-                                            <Label Text="{Binding ., StringFormat='Presupuesto: {0} - {1} NIO'}"
-                                                   FontAttributes="Bold"
-                                                   FontSize="14"
-                                                   TextColor="#34495E">
-                                                <Label.BindingContext>
-                                                    <MultiBinding StringFormat="Presupuesto: {0} - {1} NIO">
-                                                        <Binding Path="min_budget" />
-                                                        <Binding Path="max_budget" />
-                                                    </MultiBinding>
-                                                </Label.BindingContext>
+                                            <Label FontSize="14">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Presupuesto: " TextColor="#34495E" FontAttributes="Bold" />
+                                                        <Span Text="{Binding min_budget}" TextColor="#2980B9" />
+                                                        <Span Text=" - " TextColor="#34495E" />
+                                                        <Span Text="{Binding max_budget}" TextColor="#2980B9" />
+                                                        <Span Text=" NIO" TextColor="#34495E" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
                                             </Label>
                                         </HorizontalStackLayout>
 
                                         <!-- Categorías -->
                                         <HorizontalStackLayout Margin="0,5,0,0">
-                                            <Label Text="Categorías: "
-                                                   FontAttributes="Bold"
-                                                   FontSize="14"
-                                                   TextColor="#34495E" />
-                                            <Label Text="{Binding CategoriesText}"
-                                                   FontSize="14"
-                                                   TextColor="#2980B9" />
+                                            <Label FontSize="14">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Categorías: " TextColor="#34495E" FontAttributes="Bold" />
+                                                        <Span Text="{Binding CategoriesText}" TextColor="#2980B9" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                         </HorizontalStackLayout>
 
                                         <!-- Imagen -->
                                         <Image Source="{Binding url_img_post}"
                                                Aspect="AspectFill"
+                                               HorizontalOptions="FillAndExpand"
+                                               VerticalOptions="FillAndExpand"
                                                Margin="0,10,0,10"
                                                HeightRequest="200" />
 
