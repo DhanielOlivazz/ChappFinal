@@ -276,15 +276,31 @@ public partial class Perfil : ContentPage
             "Cancelar",
             null,
             "Eliminar");
-        //if (action == "Eliminar")
-        //{
-        //    // Lógica para eliminar la publicación
-        //    UserPosts.Remove(post);
-        //}
-        //else if (action == "Editar")
-        //{
-        //    // Lógica para editar la publicación
-        //}
+
+        PostController client = new PostController();
+
+        if (action == "Eliminar")
+        {
+            bool response = await DisplayAlert("Eliminar", "¿Estás seguro de eliminar esta publicación?", "Sí", "No");
+
+            if (response)
+            {
+                
+                var message = await client.DeletePostAsync(post.id);
+                Console.WriteLine(post.id);
+
+                if(message == "Publicación eliminada")
+                {
+                    await Application.Current.MainPage.DisplayAlert("Eliminado", "La publicación ha sido eliminada.", "OK");
+                    User.posts.Remove(post);
+                    OnAppearing();
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "La publicación no ha sido eliminada.", "OK");
+                }
+            }
+        }
     });
 
 }
