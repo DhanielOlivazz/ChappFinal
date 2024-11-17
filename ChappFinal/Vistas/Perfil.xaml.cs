@@ -2,6 +2,7 @@ using ChappFinal.Controllers;
 using ChappFinal.Models;
 using ChappFinal.Models.DTOs;
 using System.Collections.ObjectModel;
+using System.Xml;
 
 namespace ChappFinal.Vistas;
 
@@ -18,6 +19,13 @@ public partial class Perfil : ContentPage
         LoadProfile();
         BindingContext = this;
         
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Llama al método para cargar los posts
+        await LoadProfile();
     }
     private void OnCrearPublicacionClicked(object sender, EventArgs e)
     {
@@ -205,6 +213,7 @@ public partial class Perfil : ContentPage
 
     public void refresh()
     {
+        nameLabel.Text = _user.name;
         usernameLabel.Text = _user.name;
         contatoLabel.Text = _user.phone;
         locationLabel.Text = _user.location;

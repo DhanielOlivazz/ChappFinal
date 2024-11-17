@@ -1,6 +1,7 @@
 using ChappFinal.Controllers;
 using ChappFinal.Models;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 
 namespace ChappFinal.Vistas;
 
@@ -13,9 +14,11 @@ public partial class Inicio : ContentPage
     public Inicio()
     {
         InitializeComponent();
+        Loading(true); // Inicializa el indicador de carga
         _postController = new PostController();
         BindingContext = this; // Vincula el binding context con esta página
         LoadPosts(); // Carga los posts al iniciar
+        Loading(false); // Finaliza el indicador de carga
     }
 
     private void OnNotificacionesClicked(object sender, EventArgs e)
@@ -32,12 +35,15 @@ public partial class Inicio : ContentPage
 
     public async Task LoadPosts()
     {
+        Loading(true);
         // Cargar los posts
         var posts = await _postController.GetPostsAsync();
 
         // Asignar los posts a la colección Observable
         Posts = new ObservableCollection<Post>(posts);
         OnPropertyChanged(nameof(Posts)); // Notificar el cambio de propiedad
+
+        Loading(false);
     }
     protected override async void OnAppearing()
     {
@@ -45,6 +51,13 @@ public partial class Inicio : ContentPage
 
         // Llama al método para cargar los posts
         await LoadPosts();
+    }
+
+    private void Loading(bool status)
+    {
+        loadingIndicator.IsVisible = status;
+        loadingIndicator.IsRunning = status;
+        
     }
 
 }
