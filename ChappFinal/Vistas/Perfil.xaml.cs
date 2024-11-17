@@ -53,7 +53,10 @@ public partial class Perfil : ContentPage
     {
         UserController userController = new UserController();
         User = await userController.GetProfileAsync();
-        Posts = new ObservableCollection<Post>(User.posts);
+
+        User.posts.Reverse();
+        //Posts = new ObservableCollection<Post>(User.posts);
+        
         OnPropertyChanged(nameof(User)); // Notificar el cambio de propiedad
     }
 
@@ -137,6 +140,8 @@ public partial class Perfil : ContentPage
             }
 
             ClearEntries();
+            await Task.Delay(1000);
+            await LoadProfile();
         }
         else
         {
