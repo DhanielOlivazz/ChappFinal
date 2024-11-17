@@ -59,7 +59,9 @@ public partial class Perfil : ContentPage
 
     private async void saveBtnEditProfile_Clicked(object sender, EventArgs e)
     {
+        LoadingProfile(true);
         DTO_User user = await FillModelUser();
+
 
         if (user != null && _fileresult != null && !string.IsNullOrEmpty(_fileresult.FullPath))
         {
@@ -69,23 +71,26 @@ public partial class Perfil : ContentPage
 
             if (messages[1] == "Perfil actualizado con exito")
             {
-                Loading(false);
+                LoadingProfile(false);
                 await DisplayAlert(messages[0], "Perfil actualizado con exito", "OK");
                 BindingContext = this;
                 refresh();
-                
+                ClearEntriesProfile();
+
+
             }
             else
             {
-                Loading(false);
+                LoadingProfile(false);
                 await DisplayAlert(messages[0], messages[1], "OK");
+                
             }
+            ClearEntriesProfile();
 
-            ClearEntries();
         }
         else
         {
-            Loading(false);
+            LoadingProfile(false);
             await DisplayAlert("Error", "La imagen es necesaria", "OK");
             return;
         }
@@ -94,7 +99,6 @@ public partial class Perfil : ContentPage
 
     private void EditProfile_Clicked(object sender, EventArgs e)
     {
-        LoadProfile();
         EditarPerfilFrame.IsVisible = true;
     }
     private void OnCerrarCrearEditClicked(object sender, EventArgs e)
@@ -144,7 +148,7 @@ public partial class Perfil : ContentPage
     }
 
 
-    // Metodo para convertir la imagen seleccionada en un array de bytes
+    // Metodo para convertir la imagen seleccionada en un array de bytes 
     private async Task<byte[]> ConvertPicture()
     {
         var foto = await MediaPicker.PickPhotoAsync(); // Abre la galería para seleccionar una imagen
@@ -226,6 +230,16 @@ public partial class Perfil : ContentPage
         loadingIndicator.IsRunning = status;
         loadingIndicator.IsVisible = status;
         saveBtn.IsEnabled = !status;
+        cerrarBtn.IsEnabled = !status;
+
+    }
+
+    private void LoadingProfile(bool status)
+    {
+        loadingIndicatorE.IsRunning = status;
+        loadingIndicatorE.IsVisible = status;
+        saveBtnEditProfile.IsEnabled = !status;
+        closeBtnEditProfile.IsEnabled = !status;
 
     }
 
@@ -240,5 +254,15 @@ public partial class Perfil : ContentPage
         max_budgetEntry.Text = "";
     }
 
-    
+    private void ClearEntriesProfile()
+    {
+        fotoImageEdit.Source = "user_icon.png";
+        fullnameEntry.Text = "";
+        descriptionPEntry.Text = "";
+        phoneEntry.Text = "";
+        locationPEntry.Text = "";
+        EditarPerfilFrame.IsVisible = false;
+
+    }
+
 }

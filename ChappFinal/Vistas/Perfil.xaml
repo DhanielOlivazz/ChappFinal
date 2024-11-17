@@ -385,7 +385,8 @@
                                     Margin="20,0,20,0"
                                     TextColor="White"/>
 
-                        <Button Text="Cerrar" 
+                        <Button Text="Cerrar"
+                                    x:Name="cerrarBtn"
                                     Grid.Column="1"
                                     BackgroundColor="DarkRed"
                                     Margin="20,0,20,0"
@@ -396,6 +397,8 @@
                 </StackLayout>
             </ScrollView>
         </Frame>
+
+        <!-- Editar Perfil -->
         <Frame x:Name="EditarPerfilFrame"
             BackgroundColor="White"
             Padding="20"
@@ -473,8 +476,9 @@
                                 <x:String>Ayudante de Construcción</x:String>
                             </Picker.Items>
                         </Picker>
-                        
-                        <Grid ColumnDefinitions="*,*" Margin="10,0,0,0">
+                    
+                    <ActivityIndicator IsRunning="False" IsVisible="False" Color="RoyalBlue" x:Name="loadingIndicatorE" Margin="10"/>
+                    <Grid ColumnDefinitions="*,*" Margin="10,0,0,0">
                             <Button Text="Guardar"
                                     x:Name="saveBtnEditProfile"
                                     Grid.Column="0"
