@@ -8,7 +8,7 @@ namespace ChappFinal.Vistas;
 public partial class Inicio : ContentPage
 {
     private PostController _postController;
-    public ObservableCollection<Post> Posts { get; set; }
+    public List<Post> Posts { get; set; }
     
 
     public Inicio()
@@ -40,7 +40,8 @@ public partial class Inicio : ContentPage
         var posts = await _postController.GetPostsAsync();
 
         // Asignar los posts a la colección Observable
-        Posts = new ObservableCollection<Post>(posts);
+        Posts = new List<Post>(posts);
+        Posts.Reverse(); // Invertir el orden de los posts
         OnPropertyChanged(nameof(Posts)); // Notificar el cambio de propiedad
 
         Loading(false);
