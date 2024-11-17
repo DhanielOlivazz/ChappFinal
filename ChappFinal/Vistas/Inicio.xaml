@@ -130,8 +130,7 @@
                                            Aspect="AspectFill"
                                            HorizontalOptions="StartAndExpand"
                                            VerticalOptions="StartAndExpand"
-                                           Margin="0,10,0,10"
-                                           HeightRequest="200" />
+                                           Margin="0,10,0,10" />
 
                                     <!-- Botón de acción -->
                                     <Button Text="Aplicar"
