@@ -303,6 +303,12 @@
                                                HorizontalOptions="FillAndExpand"
                                                VerticalOptions="FillAndExpand">
                                         </Image>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                            Command="{Binding Path=BindingContext.OnPostHeldCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                            CommandParameter="{Binding .}" 
+                                            NumberOfTapsRequired="1" />
+                                        </Grid.GestureRecognizers>
                                     </Grid>
                                 </Frame>
                             </StackLayout>

@@ -269,5 +269,22 @@ public partial class Perfil : ContentPage
         EditarPerfilFrame.IsVisible = false;
 
     }
+    public Command<Post> OnPostHeldCommand => new Command<Post>(async (post) =>
+    {
+        var action = await Application.Current.MainPage.DisplayActionSheet(
+            "Opciones de Publicación",
+            "Cancelar",
+            null,
+            "Eliminar");
+        //if (action == "Eliminar")
+        //{
+        //    // Lógica para eliminar la publicación
+        //    UserPosts.Remove(post);
+        //}
+        //else if (action == "Editar")
+        //{
+        //    // Lógica para editar la publicación
+        //}
+    });
 
 }
