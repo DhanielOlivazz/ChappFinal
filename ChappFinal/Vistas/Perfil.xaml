@@ -179,137 +179,91 @@
                                 <Frame BorderColor="DarkGray"
                                        BackgroundColor="White"
                                        CornerRadius="10"
-                                       Padding="0"
+                                       Padding="10"
                                        Margin="0,10"
-                                       HorizontalOptions="FillAndExpand"
-                                       VerticalOptions="Start"
                                        HasShadow="True">
-                                    <Grid Padding="10">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid ColumnDefinitions="auto,*" Padding="0,10,10,10" Grid.Row="0">
-                                            <Frame Grid.Column="0"
-                                                   HeightRequest="50"
+                                    <VerticalStackLayout>
+                                        <!-- Encabezado: Foto de perfil y nombre -->
+                                        <HorizontalStackLayout Spacing="10" VerticalOptions="Start">
+                                            <Frame HeightRequest="50"
                                                    WidthRequest="50"
-                                                   CornerRadius="50"
+                                                   CornerRadius="25"
                                                    IsClippedToBounds="True"
-                                                   HorizontalOptions="Start"
-                                                   VerticalOptions="Start"
-                                                   Padding="0"
-                                                   Margin="0"
-                                                   HasShadow="False">
+                                                   BackgroundColor="#E0E0E0">
                                                 <Image Source="profile_icon.png"
-                                                       x:Name="profileImage"
+                                                       Aspect="AspectFill" 
                                                        HeightRequest="50"
-                                                       WidthRequest="50"
-                                                       Aspect="AspectFill"/>
+                                                       WidthRequest="50"/>
                                             </Frame>
-                                            <Label Text="Un negro"
+                                            <Label Text="Usuario"
                                                    FontSize="16"
-                                                   Grid.Column="1"
                                                    FontAttributes="Bold"
                                                    VerticalOptions="Center"
-                                                   HorizontalOptions="Start"
-                                                   Margin="10"/>
+                                                   TextColor="#2C3E50" />
+                                        </HorizontalStackLayout>
 
-
-                                        </Grid>
-
-                                        <Label Grid.Row="1"
-                                               Margin="0,0,0,5"
-                                               Text="{Binding title}"
-                                               FontAttributes="Bold"
+                                        <!-- Título -->
+                                        <Label Text="{Binding title}"
                                                FontSize="18"
-                                               TextColor="#2C3E50"
-                                               VerticalOptions="Start"
-                                               HorizontalOptions="Start"/>
+                                               FontAttributes="Bold"
+                                               Margin="0,10,0,5"
+                                               TextColor="#2C3E50" />
 
-                                        <Label x:Name="DescripcionLabel"
-                                               Margin="0,0,0,5"
-                                               Grid.Row="2"
-                                               MaxLines="3" 
-                                               Text="{Binding description}"
+                                        <!-- Descripción -->
+                                        <Label Text="{Binding description}"
                                                FontSize="14"
-                                               TextColor="#34495E"
-                                               VerticalOptions="Start"
-                                               HorizontalOptions="Start"/>
+                                               MaxLines="3"
+                                               LineBreakMode="TailTruncation"
+                                               TextColor="#34495E" />
 
-                                        <Grid Grid.Row="3" ColumnDefinitions="Auto,*" Margin="0,5">
-                                            <HorizontalStackLayout VerticalOptions="Center" Grid.Column="0">
-                                                <Image Source="pasador_de_ubicacion.png" WidthRequest="20" HeightRequest="20" />
-                                                <Label Text="{Binding location}" 
-                                                       VerticalOptions="Center" 
-                                                       TextColor="#34495E" 
-                                                       FontSize="15"/>
-                                            </HorizontalStackLayout>
-                                        </Grid>
-                                        <!-- Presupuesto máximo y mínimo -->
-                                        <Grid Grid.Row="4" RowDefinitions="auto,auto" ColumnDefinitions="auto,*" Margin="0,5">
-                                            <Label Text="Presupuesto Mínimo:" 
-                                                    FontAttributes="Bold" 
-                                                    Grid.Column="0"
-                                                    Grid.Row="0"
-                                                    FontSize="14" 
-                                                    TextColor="#34495E" 
-                                                    VerticalOptions="Start"
-                                                    HorizontalOptions="Start"/>
-                                            <Label Text="{Binding min_budget}" 
-                                                    FontSize="14" 
-                                                    Grid.Column="1"
-                                                    Grid.Row="0"
-                                                    TextColor="#2980B9" 
-                                                    VerticalOptions="Center"
-                                                    HorizontalOptions="Start"/>
+                                        <!-- Ubicación -->
+                                        <HorizontalStackLayout Spacing="5" VerticalOptions="Center" Margin="0,5,0,5">
+                                            <Image Source="pasador_de_ubicacion.png" VerticalOptions="Center" WidthRequest="20" HeightRequest="20" />
+                                            <Label Text="{Binding location}"
+                                                   FontSize="14"
+                                                   VerticalOptions="Center"
+                                                   TextColor="#34495E" />
+                                        </HorizontalStackLayout>
 
-                                            <Label Text="Presupuesto Máximo: " 
-                                                    Grid.Column="0"
-                                                    Grid.Row="1"
-                                                    FontAttributes="Bold" 
-                                                    FontSize="14" 
-                                                    TextColor="#34495E" 
-                                                    VerticalOptions="Center"
-                                                    HorizontalOptions="Start"/>
-                                            <Label Text="{Binding max_budget}" 
-                                                    Grid.Column="1"
-                                                    Grid.Row="1"
-                                                    FontSize="14" 
-                                                    TextColor="#2980B9" 
-                                                    VerticalOptions="Center"
-                                                    HorizontalOptions="Start"/>
-                                        </Grid>
+                                        <!-- Presupuesto -->
+                                        <HorizontalStackLayout >
+                                            <Label Text="{Binding ., StringFormat='Presupuesto: {0} - {1} NIO'}"
+                                                   FontAttributes="Bold"
+                                                   FontSize="14"
+                                                   TextColor="#34495E">
+                                                <Label.BindingContext>
+                                                    <MultiBinding StringFormat="Presupuesto: {0} - {1} NIO">
+                                                        <Binding Path="min_budget" />
+                                                        <Binding Path="max_budget" />
+                                                    </MultiBinding>
+                                                </Label.BindingContext>
+                                            </Label>
+                                        </HorizontalStackLayout>
 
-                                        <!-- Sección de Categorías o Tags -->
-                                        <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="0,5">
-                                            <Label Text="Categorías: " 
-                                                   FontAttributes="Bold" 
-                                                   FontSize="14" 
-                                                   TextColor="#34495E"/>
-                                            <Label Text="{Binding CategoriesText}" 
-                                                   TextColor="#2980B9" 
-                                                   FontSize="14"/>
-                                        </StackLayout>
+                                        <!-- Categorías -->
+                                        <HorizontalStackLayout Margin="0,5,0,0">
+                                            <Label Text="Categorías: "
+                                                   FontAttributes="Bold"
+                                                   FontSize="14"
+                                                   TextColor="#34495E" />
+                                            <Label Text="{Binding CategoriesText}"
+                                                   FontSize="14"
+                                                   TextColor="#2980B9" />
+                                        </HorizontalStackLayout>
 
-                                        <!-- Imagen con tamaño predefinido -->
-                                        <Image Grid.Row="6"
-                                               Source="{Binding url_img_post}"
+                                        <!-- Imagen -->
+                                        <Image Source="{Binding url_img_post}"
                                                Aspect="AspectFill"
-                                               HorizontalOptions="FillAndExpand"
-                                               VerticalOptions="FillAndExpand">
-                                        </Image>
-                                        <Grid.GestureRecognizers>
-                                            <TapGestureRecognizer
+                                               Margin="0,10,0,10"
+                                               HeightRequest="200" />
+
+                                    </VerticalStackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer
                                             Command="{Binding Path=BindingContext.OnPostHeldCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
                                             CommandParameter="{Binding .}" 
                                             NumberOfTapsRequired="1" />
-                                        </Grid.GestureRecognizers>
-                                    </Grid>
+                                    </Frame.GestureRecognizers>
                                 </Frame>
                             </StackLayout>
                         </DataTemplate>
