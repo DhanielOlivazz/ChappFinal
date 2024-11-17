@@ -20,6 +20,7 @@ namespace ChappFinal.Models
         public List<string> categories { get; set; }
         public string min_budget { get; set; }
         public string max_budget { get; set; }
+        public Users user { get; set; }
 
         public string CategoriesText => categories != null ? string.Join(", ", categories) : string.Empty;
     }

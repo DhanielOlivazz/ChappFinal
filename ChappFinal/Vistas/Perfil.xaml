@@ -39,7 +39,7 @@
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2" 
                          HorizontalOptions="Center" Padding="0,10,0,0"
                          >
-                    
+
                     <Label Text="{Binding User.name}"
                            x:Name="nameLabel"
                        FontSize="22"
@@ -183,25 +183,7 @@
                                        Margin="0,10"
                                        HasShadow="True">
                                     <VerticalStackLayout>
-                                        <!-- Encabezado: Foto de perfil y nombre -->
-                                        <HorizontalStackLayout Spacing="10" VerticalOptions="Start">
-                                            <Frame HeightRequest="50"
-                                                   WidthRequest="50"
-                                                   CornerRadius="25"
-                                                   IsClippedToBounds="True"
-                                                   BackgroundColor="#E0E0E0">
-                                                <Image Source="profile_icon.png"
-                                                       Aspect="AspectFill" 
-                                                       HeightRequest="50"
-                                                       WidthRequest="50"/>
-                                            </Frame>
-                                            <Label Text="Usuario"
-                                                   FontSize="16"
-                                                   FontAttributes="Bold"
-                                                   VerticalOptions="Center"
-                                                   TextColor="#2C3E50" />
-                                        </HorizontalStackLayout>
-
+                                        
                                         <!-- Título -->
                                         <Label Text="{Binding title}"
                                                FontSize="18"
