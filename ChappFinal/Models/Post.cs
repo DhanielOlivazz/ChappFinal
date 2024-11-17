@@ -10,6 +10,7 @@ namespace ChappFinal.Models
 {
     public class Post
     {
+        public string id { get; set; }
         public string user_id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
@@ -20,6 +21,7 @@ namespace ChappFinal.Models
         public List<string> categories { get; set; }
         public string min_budget { get; set; }
         public string max_budget { get; set; }
+        public Users user { get; set; }
 
         public string CategoriesText => categories != null ? string.Join(", ", categories) : string.Empty;
     }

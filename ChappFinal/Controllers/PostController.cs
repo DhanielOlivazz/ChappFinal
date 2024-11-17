@@ -106,6 +106,33 @@ namespace ChappFinal.Controllers
             }
         }
 
+        public async Task<string> DeletePostAsync(string id)
+        {
+            try
+            {
+                // Realizar la solicitud DELETE de forma asincrónica
+                var response = await _client.PostAsync("deletepost/"+id, null);
+                
+                // Verificar si la respuesta fue exitosa
+                if (response.IsSuccessStatusCode)
+                {
+                    return "Publicación eliminada";
+                }
+                else
+                {
+                    return "Error al eliminar la publicación";
+                }
+            }
+            catch (Exception ex)
+            {
+                // Imprimir el error en la consola para depuración
+                Console.WriteLine("---------------------------------------------------------------------------------------------------------------");
+                Console.WriteLine(ex);
+                return "Error al eliminar la publicación (catch)";
+            }
+        }
+
+
 
 
 
