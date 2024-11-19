@@ -130,7 +130,9 @@
                              VerticalOptions="Center"
                              WidthRequest="120"
                              Margin="20,0,20,0"
-                             Padding="10"/>
+                             Padding="10"
+                             x:Name="logoutBtn"
+                             Clicked="logoutBtn_Clicked"/>
                     </Grid>
                     <!-- BoxView 2 (tamaño y márgenes iguales) -->
                     <BoxView HeightRequest="1" Color="Gray" Margin="5,5,5,5"/>

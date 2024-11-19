@@ -34,6 +34,7 @@ public partial class LogIn : ContentPage
 
             // Guardar la sesión si el usuario lo desea
             SaveSesion();
+            clearEntries();
 
             await Shell.Current.GoToAsync("//Menu");
         }
@@ -41,6 +42,7 @@ public partial class LogIn : ContentPage
         {
             LoadingIdicador(false);
             DisplayAlert(messages[0], messages[1], "OK");
+            clearEntries();
         }
         
     }
@@ -72,5 +74,11 @@ public partial class LogIn : ContentPage
         {
             await SecureStorage.SetAsync("keep_session", "false");
         }
+    }
+
+    private void clearEntries()
+    {
+        EmailEntry.Text = "";
+        PasswordEntry.Text = "";
     }
 }
