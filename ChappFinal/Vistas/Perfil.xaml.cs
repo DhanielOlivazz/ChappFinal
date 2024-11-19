@@ -303,4 +303,19 @@ public partial class Perfil : ContentPage
         }
     });
 
+    private async void logoutBtn_Clicked(object sender, EventArgs e)
+    {
+
+        bool response = await DisplayAlert("Cerrar sesión", "¿Estás seguro de cerrar sesión? \n La aplicación se cerrará", "Sí", "No");
+
+        if (!response)
+            return;
+
+        await SecureStorage.SetAsync("keep_session", "false");
+        await SecureStorage.SetAsync("auth_token", "null");
+
+        await Task.Delay(1000);
+
+        Environment.Exit(0);
+    }
 }
