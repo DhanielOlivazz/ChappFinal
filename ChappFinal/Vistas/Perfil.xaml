@@ -239,8 +239,8 @@
                                         <!-- Imagen -->
                                         <Image Source="{Binding url_img_post}"
                                                Aspect="AspectFill"
-                                               HorizontalOptions="CenterAndExpand"
-                                               VerticalOptions="CenterAndExpand"
+                                               HorizontalOptions="StartAndExpand"
+                                               VerticalOptions="StartAndExpand"
                                                Margin="0,10,0,10"/>
 
                                     </VerticalStackLayout>
