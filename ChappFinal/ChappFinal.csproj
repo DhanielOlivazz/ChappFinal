@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>ChappFinal</ApplicationTitle>
+		<ApplicationTitle>Chapp</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.chappfinal</ApplicationId>
@@ -40,10 +40,8 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -57,18 +55,29 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\AppIcon\appicon.svg" />
 	  <None Remove="Resources\Images\agregar.png" />
 	  <None Remove="Resources\Images\chapp.png" />
 	  <None Remove="Resources\Images\chapp2.png" />
 	  <None Remove="Resources\Images\contact_icon.png" />
 	  <None Remove="Resources\Images\email_icon.png" />
 	  <None Remove="Resources\Images\home_icon.png" />
+	  <None Remove="Resources\Images\icon.png" />
 	  <None Remove="Resources\Images\notificacion2.png" />
 	  <None Remove="Resources\Images\notifications_icon.png" />
 	  <None Remove="Resources\Images\pasador_de_ubicacion.png" />
 	  <None Remove="Resources\Images\profile_icon.png" />
 	  <None Remove="Resources\Images\projects_icon.png" />
 	  <None Remove="Resources\Images\user_icon.png" />
+	  <None Remove="Resources\Splash\splash.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="300,140" Color="#4169E1"/>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -105,6 +114,12 @@
 	  <MauiXaml Update="Vistas\Registro.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\AppIcon\appiconfg.svg">
+	    <ForegroundFile>Resources\AppIcon\appicon.svg</ForegroundFile>
+	  </None>
 	</ItemGroup>
 
 </Project>
