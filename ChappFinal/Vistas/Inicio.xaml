@@ -149,26 +149,37 @@
         <!-- Frame para las notificaciones emergentes -->
 
         <Frame x:Name="NotificacionesFrame"
-            BackgroundColor="White"
-            Padding="20"
-            CornerRadius="10"
-            HasShadow="True"
-            IsVisible="False"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            Margin="20">
-            <ScrollView>
-                <StackLayout>
-                    <Label Text="Notificaciones"
-                         FontSize="Title"
-                         FontAttributes="Bold"
-                         TextColor="Black"
-                         HorizontalOptions="Center" />
-                    <local:Notificaciones/>
-                    <Button BackgroundColor="DarkRed" TextColor="White" Text="Cerrar" Clicked="OnCerrarNotificacionesClicked" />
-                </StackLayout>
-            </ScrollView>
+               BackgroundColor="White"
+               Padding="20"
+               CornerRadius="10"
+               HasShadow="True"
+               IsVisible="False"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="20">
+            <Grid RowDefinitions="auto,*,auto">
+                <Label Text="Notificaciones"
+                        FontSize="Title"
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Center" />
+                <!-- Contenido dentro del Frame, antes del botón -->
 
+                <local:Notificaciones Grid.Row="1"/>
+
+
+                <!-- Botón dentro del Frame, fuera del StackLayout -->
+                <Button BackgroundColor="DarkRed"
+                        TextColor="White"
+                        Text="Cerrar"
+                        Grid.Row="2"
+                        Clicked="OnCerrarNotificacionesClicked"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="End"
+                        Margin="5" />
+            </Grid>
         </Frame>
     </Grid>
 </ContentPage>

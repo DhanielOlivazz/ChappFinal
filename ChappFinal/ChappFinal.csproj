@@ -66,6 +66,7 @@
 	  <None Remove="Resources\Images\notificacion2.png" />
 	  <None Remove="Resources\Images\notifications_icon.png" />
 	  <None Remove="Resources\Images\pasador_de_ubicacion.png" />
+	  <None Remove="Resources\Images\perfil.png" />
 	  <None Remove="Resources\Images\profile_icon.png" />
 	  <None Remove="Resources\Images\projects_icon.png" />
 	  <None Remove="Resources\Images\user_icon.png" />
@@ -77,7 +78,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="300,140" Color="#4169E1"/>
+	  <MauiSplashScreen Include="Resources\Splash\splash.svg" BaseSize="300,140" Color="#4169E1" />
 	</ItemGroup>
 
 	<ItemGroup>

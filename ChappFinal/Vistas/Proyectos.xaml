@@ -3,19 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ChappFinal.Vistas.Proyectos"
              Title="Proyectos">
-    <ContentView>
-        <CollectionView ItemsSource="{Binding Chats}">
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Chats}" BackgroundColor="White">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout Orientation="Horizontal" Padding="10">
-                        <Image Source="{Binding ProfileImage}" WidthRequest="50" HeightRequest="50" />
+                    <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White" Margin="0,0,0,0">
+                        <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" IsClippedToBounds="True" BackgroundColor="White">
+                            <Image Source="{Binding Avatar}" Aspect="AspectFill" HeightRequest="50" WidthRequest="50"/>
+                        </Frame>
                         <StackLayout Orientation="Vertical" Padding="10,0">
-                            <Label Text="{Binding UserName}" FontAttributes="Bold" />
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
                             <Label Text="{Binding LastMessage}" FontSize="Small" />
                         </StackLayout>
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </ContentView>
+    </ContentPage.Content>
 </ContentPage>
+        
